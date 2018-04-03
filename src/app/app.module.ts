@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, OnInit } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+
 import { NamingtaskComponent } from './model/namingtask/namingtask.component';
 import { Subscription } from 'rxjs/Subscription';
 import { NavigationComponent } from './nav/navigation/navigation.component';
@@ -32,7 +34,8 @@ import { NavigationComponent } from './nav/navigation/navigation.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

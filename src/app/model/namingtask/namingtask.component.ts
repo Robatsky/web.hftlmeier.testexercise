@@ -8,13 +8,17 @@ import { ActivatedRoute } from '@angular/router';
 export class NamingtaskComponent implements OnInit {
 
   private model : NamingtaskModel;
+  private userInputs = [{value: ''}];
 
   constructor(private route: ActivatedRoute) {
     this.model = this.route.snapshot.data[0].model;
-    console.log(this.model);
-   }
+  }
 
-  ngOnInit() {
+  ngOnInit() : void{
+  }
+
+  addInputField() {
+    this.userInputs.push({value:''});
   }
 
 }

@@ -1,9 +1,16 @@
-<p *ngIf='model.data'>
-  
-  id: {{model.idx}} <br/>
-  type: {{model.type}} <br/>
-  name: {{model.name}} <br/>
-  maxpoints: {{model.data.maxpoints}}<br/>
-  reqPoints: {{model.data.requiredPoints}}<br/>
-  answers: {{model.data.answers}}<br/>
-</p>
+<h2>{{model.name}}</h2>
+
+<form #formRef="ngForm">
+    <div *ngFor="let word2 of userInputs; let in=index" class="col-sm-3">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="userInputs[in].value" name="name{{in}}" class="form-control" />
+        </div>
+        <br />
+    </div>
+
+    <button (click)="addInputField()">Add input</button>
+  </form>
+  <br />
+  <br />
+  {{userInputs | json}}
+

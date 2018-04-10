@@ -1,0 +1,15 @@
+<style>
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+  ul li {
+    padding: 0px 15px;
+  }
+</style>
+
+<h1>Navigation</h1>
+<ul>
+    <li *ngFor='let x of navEntries'><a routerLink={{x.path}}>{{x.name}}</a></li>
+</ul>

@@ -1,0 +1,22 @@
+[
+{
+    "id": 0,
+    "type": 0,
+    "name": "Aufgabe 1",
+    "data": {
+        "maxpoints": 10,
+        "reqpoints": 2,
+        "answers": ["Antwort A", "Antwort B", "Antwort C"]
+    }
+},
+{
+    "id": 1,
+    "type": 0,
+    "name": "Aufgabe 2",
+    "data": {
+        "maxpoints": 10,
+        "reqpoints": 2,
+        "answers": ["Antwort A", "Antwort B", "Antwort C"]
+    }
+}
+]

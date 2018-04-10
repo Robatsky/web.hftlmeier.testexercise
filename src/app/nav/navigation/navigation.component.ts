@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, Route } from '@angular/router';
-
+import {Constants} from '../../model/Constants';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -25,7 +25,7 @@ export class NavigationComponent implements OnInit {
       for(let i = 0; i < data.length; i++) {
         routes[i].data[0].model = {
           idx: data[i]['id'],
-          type: data[i]['type'],
+          type: Constants.get(data[i]['type']),
           name: data[i]['name'],
           data: {
             maxpoints: data[i]['data']['maxpoints'],

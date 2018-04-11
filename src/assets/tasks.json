@@ -1,0 +1,51 @@
+[
+    {
+        "id": 0,
+        "type": 0,
+        "name": "Aufgabe 1",
+        "question": "Hier könnte ein Aufgabentext stehen",
+        "data": {
+            "maxpoints": 10,
+            "reqpoints": 2,
+            "answers": [
+                "Antwort A",
+                "Antwort B",
+                "Antwort C"
+            ]
+        }
+    },
+    {
+        "id": 1,
+        "type": 1,
+        "name": "Aufgabe 2",
+        "question": "Dem Andwender einer verteilten Anwendung sollte möglichst verborgen werden, aus welchen VA-Komponenten eine Anwendung aufgebaut ist und auf welchen VS-Knoten sich die einzelnen Komponenten befinden. Eine Anwendung, die diese Dtails verbirgt, wird als <i>transparent</i> bezeichnet.<br><b>Nennen Sie die ihnen bekannten Transparenzarten!</b>",
+        "data": {
+            "maxpoints": 6,
+            "reqpoints": 3,
+            "answers": [
+                "Zugriffstransparenz",
+                "Ortstransparenz",
+                "Migrationstransparenz",
+                "Replikationstransparenz",
+                "Nebenläufigkeitstransparenz",
+                "Fehlertransparenz"
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "type": 1,
+        "name": "Aufgabe 21111",
+        "question": "Hier könnte ein Aufgabentext stehen",
+        "data": {
+            "maxpoints": 10,
+            "reqpoints": 2,
+            "answers": [
+                "Antwort A",
+                "Antwort B",
+                "Antwort C",
+                "Antwort D "
+            ]
+        }
+    }
+]

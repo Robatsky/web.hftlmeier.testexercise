@@ -1,0 +1,44 @@
+<section>
+  <div>
+    <h2>{{title}}</h2>
+    <a>Typ: Nenne</a>
+    <hr>
+    <p [innerHTML]="question"></p>
+    <br>
+  </div>
+  <div>
+    <form>
+      <div *ngFor="let input of userInputs; let in=index" class="col-sm-3">
+        <div class="form-group">
+          <label>
+            <b>{{in+1}}. Antwort</b>
+          </label>
+          <div class="naming-input-row">
+            <input type="text" [(ngModel)]="input.value" name="name{{in}}" class="form-control" />
+            <button type="button" class="close" aria-label="Close" (click)="deleteInputField(in)">
+              <span *ngIf="userInputs.length > 1" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <button class="btn btn-default" (click)="addInputField()">Antwort hinzufügen</button>
+      <div class=" float-right">
+        <button class="btn btn-success" (click)="evaluateInput()">Auswerten</button>
+        <button *ngIf="points >= data.reqpoints" class="btn btn-success" (click)="nextTask()">Weiter</button>
+        <button class="btn btn-danger" (click)="reset()">Noch mal</button>
+      </div>
+    </form>
+    <hr>
+    <div class="hints-div" *ngFor="let hint of hints">
+      <span class="badge {{hint.styleClass}}">{{hint.text}}</span>
+    </div>
+    <div *ngIf="evaluatedTask">
+      <hr>
+      <span>Erreichte Anzahl an Punkten: {{points}}/{{data.maxpoints}}</span>
+      <br>
+      <span *ngIf="points < data.reqpoints">Sie brauchen mindestens {{data.reqpoints}} Punkte um vorzufahren.</span>
+    </div>
+  </div>
+</section>

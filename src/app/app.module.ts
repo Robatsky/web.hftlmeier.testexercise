@@ -1,43 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, OnInit } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
 
-import { NamingtaskComponent } from './model/namingtask/namingtask.component';
-import { Subscription } from 'rxjs/Subscription';
-import { NavigationComponent } from './nav/navigation/navigation.component';
+import { NamingTaskComponent } from './components/naming-task/naming-task.component';
+import { DnDtaskComponent } from './components/dnd-task/dnd-task.component';
+import { OverviewComponent } from './components/overview/overview.component';
 
- let appRoutes = [
-  {
-    path: 'namingtask0',
-    component: NamingtaskComponent,
-    data: [{model:{idx: 0}}]
-  },
-  {
-    path: 'namingtask1',
-    component: NamingtaskComponent,
-    data: [{model:{idx: 1}}]
-  }
-];
 
 @NgModule({
   declarations: [
     AppComponent,
-    NamingtaskComponent,
-    NavigationComponent,
+    AppRoutingModule,
+    NamingTaskComponent,
+    DnDtaskComponent,
+    OverviewComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    HttpClientModule,
-    FormsModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-
-export class AppModule  {
-}
+export class AppModule { }

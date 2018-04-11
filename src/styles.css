@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+div.hints-div span {
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+div.naming-input-row {
+    display: flex;
+}
+
+div.naming-input-row input {
+    margin-right: 10px;
+}

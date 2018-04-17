@@ -11,3 +11,29 @@ div.naming-input-row {
 div.naming-input-row input {
     margin-right: 10px;
 }
+
+div.dragula-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-grow: 1;
+}
+
+div.dragula-bag {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1 0 50%;
+    min-height: 100px;
+}
+
+div.dragula-bag div {
+    padding: 15px 10px;
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+div.dragula-bag div~div {
+    border-top: 1px solid white;
+}

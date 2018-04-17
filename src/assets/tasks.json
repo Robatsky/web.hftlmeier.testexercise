@@ -3,14 +3,19 @@
         "id": 0,
         "type": 0,
         "name": "Aufgabe 1",
-        "question": "Hier könnte ein Aufgabentext stehen",
+        "question": "Ziel dieser Aufgabe ist die Überprüfung Ihres Verständnisses zum Thema Verschlüsselung.<br/><b>Welche Nachteile bestehen im Zusammenhang mit der asymmetrischen Verschlüsselung?<br/><br/><small>Hinweis:<br/>Fahren Sie mit der Maus über die Antwort die Sie bewegen möchten, halten Sie die linke Maustaste gedrückt und schieben Sie die Antwort in den grünen Container.<br/> Für jede richtige Antwort erhalten Sie 1 Punkt, für jede falsche Antwort -0,5 Punkte</small>",
         "data": {
-            "maxpoints": 10,
-            "reqpoints": 2,
+            "maxpoints": 2,
+            "reqpoints": 1,
             "answers": [
-                "Antwort A",
-                "Antwort B",
-                "Antwort C"
+                "Sie ist vergleichsweise rechenaufwändig.",
+                "Man benötigt zusätzliche Maßnahmen gegen \"Man-in-the-Middle\"-Angriffe."
+            ],
+            "possibleAnswers": [
+                "Sie ist vergleichsweise rechenaufwändig.",
+                "Man benötigt zusätzliche Maßnahmen gegen \"Man-in-the-Middle\"-Angriffe.",
+                "Der zum Einsatz kommende Verschlsselungsalgorithmus ist zu unsicher.",
+                "Der geheime Schlüsselautausch ist gefährlich."
             ]
         }
     },
@@ -45,6 +50,22 @@
                 "Antwort B",
                 "Antwort C",
                 "Antwort D "
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "type": 1,
+        "name": "Früchteaufgabe",
+        "question": "Hier könnte ein Aufgabentext stehen",
+        "data": {
+            "maxpoints": 5,
+            "reqpoints": 2,
+            "answers": [
+                "Banane",
+                "Apfel",
+                "Orange",
+                "Kiwi"
             ]
         }
     }

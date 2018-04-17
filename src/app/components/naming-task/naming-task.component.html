@@ -23,9 +23,9 @@
       </div>
 
       <br>
-      <button class="btn btn-default" (click)="addInputField()">Antwort hinzufügen</button>
+      <button [disabled]="alreadyEvaluated()" class="btn btn-default" (click)="addInputField()">Antwort hinzufügen</button>
       <div class=" float-right">
-        <button class="btn btn-success" (click)="evaluateInput()">Auswerten</button>
+        <button [disabled]="alreadyEvaluated()" class="btn btn-success" (click)="evaluateInput()">Auswerten</button>
         <button *ngIf="points >= data.reqpoints" class="btn btn-success" (click)="nextTask()">Weiter</button>
         <button class="btn btn-danger" (click)="reset()">Noch mal</button>
       </div>

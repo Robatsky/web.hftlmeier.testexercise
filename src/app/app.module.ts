@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NamingTaskComponent } from './components/naming-task/naming-task.component';
 import { DnDtaskComponent } from './components/dnd-task/dnd-task.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { DragulaModule } from 'ng2-dragula';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { OverviewComponent } from './components/overview/overview.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    DragulaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

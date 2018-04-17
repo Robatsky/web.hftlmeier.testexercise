@@ -5,17 +5,36 @@
         <hr>
         <p [innerHTML]="question"></p>
         <br>
+        <br>
     </div>
-    <!--<div>
-        <div class="float-left">
-            <div [dragula]='"bag-one"' [(dragulaModel)]="answers" style="min-height: 100px">
-                <div *ngFor="let item of answers">{{item}}</div>
+    <div class="dragula-wrapper">
+        <div [dragula]='"bag-one"' [(dragulaModel)]="answers" class="badge badge-success dragula-bag bag-left">
+            <div *ngFor="let item of answers">
+                {{item}}
             </div>
         </div>
-        <div class="float-right">
-            <div [dragula]='"bag-one"' [(dragulaModel)]="possibleAnswers" style="min-height: 100px">
-                <div *ngFor="let item of possibleAnswers">{{item}}</div>
+        <div [dragula]='"bag-one"' [(dragulaModel)]="possibleAnswers" class="badge badge-danger dragula-bag bag-right">
+            <div *ngFor="let item of possibleAnswers">
+                {{item}}
             </div>
         </div>
-    </div>-->
+    </div>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <button [disabled]="alreadyEvaluated()" class="btn btn-success" (click)="evaluateInput()">Auswerten</button>
+    <button *ngIf="points >= data.reqpoints" class="btn btn-success" (click)="nextTask()">Weiter</button>
+    <button class="btn btn-danger" (click)="reset()">Noch mal</button>
+    <br>
+    <br>
+    <div class="hints-div" *ngFor="let hint of hints">
+        <span class="badge {{hint.styleClass}}">{{hint.text}}</span>
+    </div>
+    <div *ngIf="evaluatedTask">
+        <hr>
+        <span>Erreichte Anzahl an Punkten: {{points}}/{{data.maxpoints}}</span>
+        <br>
+        <span *ngIf="points < data.reqpoints">Sie brauchen mindestens {{data.reqpoints}} Punkte um vorzufahren.</span>
+    </div>
 </section>

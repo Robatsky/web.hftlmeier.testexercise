@@ -1,36 +1,71 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DragulaService } from 'ng2-dragula';
+import { ArrayUtil } from '../../util/ArrayUtil';
+import { BasicTask } from '../../model/task/BasicTask';
 
 @Component({
 	selector: 'app-dn-dtask',
 	templateUrl: './dnd-task.component.html',
 })
-export class DnDtaskComponent implements OnInit {
+export class DnDtaskComponent extends BasicTask {
 
-	private answers: string[];
+	private evaluatedTask: boolean = false;
+
+	private answers: string[] = [];
 	private possibleAnswers: string[];
 
-	private id: number;
-	private title: string;
-	private question: string;
-	private data: any;
+	constructor(route: ActivatedRoute, router: Router,
+		private dragulaService: DragulaService) {
+		super(route, router);
 
-	constructor(private router: ActivatedRoute) {
-		this.id = router.snapshot.data[0].id;
-		this.title = router.snapshot.data[0].name;
-		this.data = router.snapshot.data[0].data;
-		this.question = router.snapshot.data[0].question;
-		this.answers = this.data.answers;
-		this.possibleAnswers = this.data.possibleAnswers;
+		this.possibleAnswers = ArrayUtil.shuffle(
+			ArrayUtil.copyOf(super.getData().possibleAnswers));
+
 	}
 
-	public ngOnInit() {
-		/*this.dragulaService.dropModel.subscribe(val => {
-			this.onDropModel(val.slice(1));
-		})*/
+	/**
+	 * Evaluates the inputs from the user.
+	 * If there is no user input there is no further evaluation.	
+	 */
+	public evaluateInput(): void {
+		super.reset();
+
+		if (this.answers.length === 0) {
+			super.addHint("badge-danger", "Wählen Sie mindestens eine Antwort aus!");
+			return;
+		}
+
+		this.evaluatedTask = true;
+		this.answers.forEach(answer => {
+			if (ArrayUtil.arrayContains(super.getAnswers(), answer)) {
+				super.increatePoints(1);
+				this.addHint("badge-success", "Richtig! \"" + answer + "\" ist eine richtige Antwort.");
+			} else {
+				super.increatePoints(-.5);
+				this.addHint("badge-danger", "Falsch! \"" + answer + "\" ist keine richtige Antwort");
+			}
+		});
 	}
 
-	private onDropModel(args): void {
+	/**
+	 * Resets the attributes of the current task to its default values.
+	 */
+	public reset(): void {
+		this.evaluatedTask = false;
+		this.answers = [];
+		this.possibleAnswers = [];
+		this.possibleAnswers = ArrayUtil.shuffle(
+			ArrayUtil.copyOf(super.getData().possibleAnswers));
+
+	}
+
+		/**
+	 * Checks and returns whether the task has already been evaluated.
+	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
+	 */
+	private alreadyEvaluated(): boolean {
+		return this.evaluatedTask;
 	}
 
 }

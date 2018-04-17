@@ -1,38 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ArrayUtil } from '../../util/ArrayUtil';
+import { BasicTask } from '../../model/task/BasicTask';
+import { InputMatcher } from '../../util/InputMatcher';
 
 @Component({
 	selector: 'app-naming-task',
 	templateUrl: './naming-task.component.html',
 })
-export class NamingTaskComponent {
+export class NamingTaskComponent extends BasicTask {
 
 	// booleans to toggle button states
 	private taskCompleted: boolean = false;
 	private evaluatedTask: boolean = false;
 
-	// model attributes containing important information
-	// about this task
-	private id: number;
-	private title: string;
-	private question: string;
-	private data: any;
-
-
-	// points the user has collected
-	private points: number;
-
 	// input-values
 	private userInputs = [{ value: '' }];
-	private hints = [{ styleClass: "", text: "" }];
 
-
-	constructor(private router: ActivatedRoute,
-		private route: Router) {
-		this.id = router.snapshot.data[0].id;
-		this.title = router.snapshot.data[0].name;
-		this.data = router.snapshot.data[0].data;
-		this.question = router.snapshot.data[0].question;
+	constructor(route: ActivatedRoute, router: Router) {
+		super(route, router);
 	}
 
 	/**
@@ -44,6 +30,14 @@ export class NamingTaskComponent {
 	}
 
 	/**
+	 * Checks and returns whether the task has already been evaluated.
+	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
+	 */
+	private alreadyEvaluated(): boolean {
+		return this.evaluatedTask;
+	}
+
+	/**
 	 * Adds a new element array in order to observe the corresponding
 	 * user input field.
 	 */
@@ -52,57 +46,39 @@ export class NamingTaskComponent {
 	}
 
 	/**
-	 * Jumpes to the next task.
-	 * The next task has the id {@code this.id+2} due to the fact,
-	 * that the task ids start with 0 and the first task is at
-	 * the second page.
+	 * Resets the attributes of the current task to its default values.
 	 */
-	private nextTask(): void {
-		this.route.navigateByUrl(this.route.config[this.id + 2].path);
-	}
-
-	private reset(): void {
-		this.hints = [];
+	public reset(): void {
+		super.reset();
 		this.userInputs = [{ value: '' }];
 		this.taskCompleted = false;
 		this.evaluatedTask = false;
-		this.points = 0;
 	}
 
 	/**
 	 * Evaluates the inputs from the user.
 	 * If there are empty input fields there is no further evaluation.	
 	 */
-	private evaluateInput(): void {
-		this.hints = [];
+	public evaluateInput(): void {
+		super.reset();
 
 		if (this.hasEmptyInputs()) {
-			this.hints.push({ styleClass: "badge-danger", text: "Es darf keine leeren Antworten geben!" });
+			this.addHint("badge-danger", "Es darf keine leeren Antworten geben!");
 			return;
 		}
 
 		this.evaluatedTask = true;
-		this.points = 0;
 
-		this.userInputs
-			.map(val => val.value)
+		this.userInputs.map(val => val.value)
 			.forEach(val => {
-				const lowerCaseAnswers = this.data.answers.map(val => val.toLocaleLowerCase());
-				if (this.arrayContains(lowerCaseAnswers, val.toLocaleLowerCase())) {
-					this.points++;
-					this.hints.push(
-						{
-							styleClass: "badge-success",
-							text: "Richtig! " + val + " ist ein wichtiger Bestandteil"
-						}
-					);
+				const lowerCaseAnswers = super.getAnswers().map(val => val.toLocaleLowerCase());
+				console.log(ArrayUtil.arrayApproxContains(lowerCaseAnswers, val.toLocaleLowerCase()));
+				
+				if (ArrayUtil.arrayApproxContains(lowerCaseAnswers, val.toLocaleLowerCase())) {
+					this.increatePoints(1);
+					this.addHint("badge-success", "Richtig! " + val + " ist ein wichtiger Bestandteil");
 				} else {
-					this.hints.push(
-						{
-							styleClass: "badge-danger",
-							text: "Falsch! " + val + " ist kein Bestandteil!"
-						}
-					);
+					this.addHint("badge-danger", "Falsch! " + val + " ist kein Bestandteil!");
 				}
 			});
 	}
@@ -115,15 +91,5 @@ export class NamingTaskComponent {
 	 */
 	private hasEmptyInputs(): boolean {
 		return this.userInputs.map(e => e.value).filter(e => e.length == 0).length != 0;
-	}
-
-	/**
-	 * Checks whether the given {@code arr} has the element {@code val} in its collection.
-	 * @param arr the collection to be checked
-	 * @param val the value to be checked whether it its in the collection or not
-	 * @return {@code true} if the collection has at least one element equal to {@code val}, {@code false} otherwise.
-	 */
-	private arrayContains<T>(arr: T[], val: T): boolean {
-		return arr.indexOf(val) != -1;
 	}
 }

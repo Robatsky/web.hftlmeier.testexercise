@@ -1,18 +1,19 @@
 import { ActivatedRoute, Router } from "@angular/router";
+import { OnDestroy, OnInit } from "@angular/core";
 
-export abstract class BasicTask {
+export abstract class BasicTask { // OnInit, OnDestroy
 
     // model attributes containing important information
     // about this task
     private id: number;
-    private title: string;
-    private question: string;
-    private data: any;
+    public title: string;
+    public question: string;
+    public data: any;
 
     // points the user has collected
-    private points: number;
+    public points: number;
 
-    private hints = [{ styleClass: "", text: "" }];
+    public hints = [{ styleClass: "", text: "" }];
 
     constructor(private route: ActivatedRoute,
         private router: Router) {

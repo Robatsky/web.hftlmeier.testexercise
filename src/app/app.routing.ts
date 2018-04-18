@@ -7,27 +7,44 @@ import { OverviewComponent } from './components/overview/overview.component';
 
 // possible? best practise? 
 declare var require: any;
-
-export const routes: Routes = loadRouteComponents();
-
+let routes: Routes = [
+    {
+        path: '',
+        component: OverviewComponent,
+        data: [{ id: -1, name: "json.name", description: "json.description", taskamount: 0 }]
+    }];
+routes = loadRouteComponents(false);
 /**
  * Loades the json file and converts the tasks into 
  * route objects. 
  * 
  * @return an array containing the route objects
  */
-function loadRouteComponents(): Routes {
+function loadRouteComponents(justLoad: boolean): Routes {
+
+    if (justLoad) {
+        return routes;
+    }
+
     // load the appropriate json file
     let json = require('../assets/tasks.json');
     let loadedRoutes = [];
 
-    loadedRoutes.push({ path: '', component: OverviewComponent, data: [{ id: -1 }] });
+    // push overview route separatly because it does not have the typicall task structure
+    loadedRoutes.push({
+        path: '',
+        component: OverviewComponent,
+        data: [{ id: -1, name: json.name, description: json.description, taskamount: json.tasks.length }]
+    });
+
 
     // for each task in the json array
-    for (let task of json) {
+    //for (let task of json.tasks) {
+    json.tasks.forEach(task => {
         let route = convertTaskToRoute(task);
         loadedRoutes.push(route);
-    }
+    });
+
 
     return loadedRoutes;
 }
@@ -83,13 +100,15 @@ function convertTaskToRoute(task) {
     `
 })
 export class AppRoutingModule {
-    private entries = [];
+    public entries = [];
 
     constructor() {
         // generates the navbar entries out of the json file
-        loadRouteComponents().forEach(e => {
+        loadRouteComponents(true).forEach(e => {
             this.entries.push({ path: e.path, name: e.data[0].name });
         });
+        // first item is not necessary because it is hardcoded as the overview tab
+        this.entries.shift();
     }
 }
 

@@ -10,10 +10,10 @@ import { BasicTask } from '../../model/task/BasicTask';
 })
 export class DnDtaskComponent extends BasicTask {
 
-	private evaluatedTask: boolean = false;
+	public evaluatedTask: boolean = false;
 
-	private answers: string[] = [];
-	private possibleAnswers: string[];
+	public answers: string[] = [];
+	public possibleAnswers: string[];
 
 	constructor(route: ActivatedRoute, router: Router,
 		private dragulaService: DragulaService) {
@@ -64,7 +64,7 @@ export class DnDtaskComponent extends BasicTask {
 	 * Checks and returns whether the task has already been evaluated.
 	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
 	 */
-	private alreadyEvaluated(): boolean {
+	public alreadyEvaluated(): boolean {
 		return this.evaluatedTask;
 	}
 

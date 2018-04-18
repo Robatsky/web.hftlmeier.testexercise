@@ -7,7 +7,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public name: string;
+  public description: string;
+  public taskamount: number;
+
+  constructor(private router: Router,
+    private route: ActivatedRoute) {
+    this.name = route.snapshot.data[0].name;
+    this.description = route.snapshot.data[0].description;
+    this.taskamount = route.snapshot.data[0].taskamount;
+  }
 
   ngOnInit() {
   }

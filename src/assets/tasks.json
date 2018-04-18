@@ -1,72 +1,76 @@
-[
-    {
-        "id": 0,
-        "type": 0,
-        "name": "Aufgabe 1",
-        "question": "Ziel dieser Aufgabe ist die Überprüfung Ihres Verständnisses zum Thema Verschlüsselung.<br/><b>Welche Nachteile bestehen im Zusammenhang mit der asymmetrischen Verschlüsselung?<br/><br/><small>Hinweis:<br/>Fahren Sie mit der Maus über die Antwort die Sie bewegen möchten, halten Sie die linke Maustaste gedrückt und schieben Sie die Antwort in den grünen Container.<br/> Für jede richtige Antwort erhalten Sie 1 Punkt, für jede falsche Antwort -0,5 Punkte</small>",
-        "data": {
-            "maxpoints": 2,
-            "reqpoints": 1,
-            "answers": [
-                "Sie ist vergleichsweise rechenaufwändig.",
-                "Man benötigt zusätzliche Maßnahmen gegen \"Man-in-the-Middle\"-Angriffe."
-            ],
-            "possibleAnswers": [
-                "Sie ist vergleichsweise rechenaufwändig.",
-                "Man benötigt zusätzliche Maßnahmen gegen \"Man-in-the-Middle\"-Angriffe.",
-                "Der zum Einsatz kommende Verschlsselungsalgorithmus ist zu unsicher.",
-                "Der geheime Schlüsselautausch ist gefährlich."
-            ]
+{
+    "name": "Erste Übung",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+    "tasks": [
+        {
+            "id": 0,
+            "type": 0,
+            "name": "Aufgabe 1",
+            "question": "Ziel dieser Aufgabe ist die Überprüfung Ihres Verständnisses zum Thema Verschlüsselung.<br/><b>Welche Nachteile bestehen im Zusammenhang mit der asymmetrischen Verschlüsselung?<br/><br/><small>Hinweis:<br/>Fahren Sie mit der Maus über die Antwort die Sie bewegen möchten, halten Sie die linke Maustaste gedrückt und schieben Sie die Antwort in den grünen Container.<br/> Für jede richtige Antwort erhalten Sie 1 Punkt, für jede falsche Antwort -0,5 Punkte</small>",
+            "data": {
+                "maxpoints": 2,
+                "reqpoints": 1,
+                "answers": [
+                    "Sie ist vergleichsweise rechenaufwändig.",
+                    "Man benötigt zusätzliche Maßnahmen gegen \"Man-in-the-Middle\"-Angriffe."
+                ],
+                "possibleAnswers": [
+                    "Sie ist vergleichsweise rechenaufwändig.",
+                    "Man benötigt zusätzliche Maßnahmen gegen \"Man-in-the-Middle\"-Angriffe.",
+                    "Der zum Einsatz kommende Verschlsselungsalgorithmus ist zu unsicher.",
+                    "Der geheime Schlüsselautausch ist gefährlich."
+                ]
+            }
+        },
+        {
+            "id": 1,
+            "type": 1,
+            "name": "Aufgabe 2",
+            "question": "Dem Andwender einer verteilten Anwendung sollte möglichst verborgen werden, aus welchen VA-Komponenten eine Anwendung aufgebaut ist und auf welchen VS-Knoten sich die einzelnen Komponenten befinden. Eine Anwendung, die diese Dtails verbirgt, wird als <i>transparent</i> bezeichnet.<br><b>Nennen Sie die ihnen bekannten Transparenzarten!</b>",
+            "data": {
+                "maxpoints": 6,
+                "reqpoints": 3,
+                "answers": [
+                    "Zugriffstransparenz",
+                    "Ortstransparenz",
+                    "Migrationstransparenz",
+                    "Replikationstransparenz",
+                    "Nebenläufigkeitstransparenz",
+                    "Fehlertransparenz"
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "type": 1,
+            "name": "Aufgabe 21111",
+            "question": "Hier könnte ein Aufgabentext stehen",
+            "data": {
+                "maxpoints": 10,
+                "reqpoints": 2,
+                "answers": [
+                    "Antwort A",
+                    "Antwort B",
+                    "Antwort C",
+                    "Antwort D "
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "type": 1,
+            "name": "Früchteaufgabe",
+            "question": "Hier könnte ein Aufgabentext stehen",
+            "data": {
+                "maxpoints": 5,
+                "reqpoints": 2,
+                "answers": [
+                    "Banane",
+                    "Apfel",
+                    "Orange",
+                    "Kiwi"
+                ]
+            }
         }
-    },
-    {
-        "id": 1,
-        "type": 1,
-        "name": "Aufgabe 2",
-        "question": "Dem Andwender einer verteilten Anwendung sollte möglichst verborgen werden, aus welchen VA-Komponenten eine Anwendung aufgebaut ist und auf welchen VS-Knoten sich die einzelnen Komponenten befinden. Eine Anwendung, die diese Dtails verbirgt, wird als <i>transparent</i> bezeichnet.<br><b>Nennen Sie die ihnen bekannten Transparenzarten!</b>",
-        "data": {
-            "maxpoints": 6,
-            "reqpoints": 3,
-            "answers": [
-                "Zugriffstransparenz",
-                "Ortstransparenz",
-                "Migrationstransparenz",
-                "Replikationstransparenz",
-                "Nebenläufigkeitstransparenz",
-                "Fehlertransparenz"
-            ]
-        }
-    },
-    {
-        "id": 2,
-        "type": 1,
-        "name": "Aufgabe 21111",
-        "question": "Hier könnte ein Aufgabentext stehen",
-        "data": {
-            "maxpoints": 10,
-            "reqpoints": 2,
-            "answers": [
-                "Antwort A",
-                "Antwort B",
-                "Antwort C",
-                "Antwort D "
-            ]
-        }
-    },
-    {
-        "id": 3,
-        "type": 1,
-        "name": "Früchteaufgabe",
-        "question": "Hier könnte ein Aufgabentext stehen",
-        "data": {
-            "maxpoints": 5,
-            "reqpoints": 2,
-            "answers": [
-                "Banane",
-                "Apfel",
-                "Orange",
-                "Kiwi"
-            ]
-        }
-    }
-]
+    ]
+}

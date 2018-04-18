@@ -11,14 +11,15 @@ import { InputMatcher } from '../../util/InputMatcher';
 export class NamingTaskComponent extends BasicTask {
 
 	// booleans to toggle button states
-	private taskCompleted: boolean = false;
-	private evaluatedTask: boolean = false;
+	public taskCompleted: boolean = false;
+	public evaluatedTask: boolean = false;
 
 	// input-values
-	private userInputs = [{ value: '' }];
+	public userInputs = [{ value: '' }];
 
 	constructor(route: ActivatedRoute, router: Router) {
 		super(route, router);
+		
 	}
 
 	/**
@@ -33,7 +34,7 @@ export class NamingTaskComponent extends BasicTask {
 	 * Checks and returns whether the task has already been evaluated.
 	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
 	 */
-	private alreadyEvaluated(): boolean {
+	public alreadyEvaluated(): boolean {
 		return this.evaluatedTask;
 	}
 
@@ -41,7 +42,7 @@ export class NamingTaskComponent extends BasicTask {
 	 * Adds a new element array in order to observe the corresponding
 	 * user input field.
 	 */
-	private addInputField(): void {
+	public addInputField(): void {
 		this.userInputs.push({ value: '' });
 	}
 
@@ -73,7 +74,7 @@ export class NamingTaskComponent extends BasicTask {
 			.forEach(val => {
 				const lowerCaseAnswers = super.getAnswers().map(val => val.toLocaleLowerCase());
 				console.log(ArrayUtil.arrayApproxContains(lowerCaseAnswers, val.toLocaleLowerCase()));
-				
+
 				if (ArrayUtil.arrayApproxContains(lowerCaseAnswers, val.toLocaleLowerCase())) {
 					this.increatePoints(1);
 					this.addHint("badge-success", "Richtig! " + val + " ist ein wichtiger Bestandteil");

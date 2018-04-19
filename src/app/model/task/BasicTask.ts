@@ -57,6 +57,8 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
     }
 
     public savePoints() : void {
+        console.log(this.title + " neue Punkte: " + this.points + " added");
+        
         this.taskService.updateTaskPoints(this.id, this.points);
     }
 
@@ -107,6 +109,14 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
      */
     public getID(): number {
         return this.id;
+    }
+
+    /**
+     * Returns the title of this task.
+     * @return the title.
+     */
+    public getTitle(): string {
+        return this.title;
     }
 
 	/**

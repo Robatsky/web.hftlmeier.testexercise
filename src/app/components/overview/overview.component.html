@@ -12,4 +12,22 @@
   </p>
 
   <button class="btn btn-default" (click)="nextTask();">Los geht's.</button>
+  <br>
+  <section *ngIf="chartData.length > 0" >
+    <hr>
+
+    <h4>Statistik</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <div style="display: block">
+          <canvas baseChart
+                  [datasets]="chartData"
+                  [labels]="chartLabels"
+                  [options]="chartOptions"
+                  [legend]="chartLegend"
+                  [chartType]="chartType"></canvas>
+        </div>
+      </div>
+  </div>
+  </section>
 </div>

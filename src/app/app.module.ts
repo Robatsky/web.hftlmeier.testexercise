@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing';
-
+import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 
 import { NamingTaskComponent } from './components/naming-task/naming-task.component';
@@ -10,6 +10,7 @@ import { DnDtaskComponent } from './components/dnd-task/dnd-task.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { DragulaModule } from 'ng2-dragula';
 import { TaskService } from './services/task.service';
+
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TaskService } from './services/task.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    DragulaModule
+    DragulaModule,
+    ChartsModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

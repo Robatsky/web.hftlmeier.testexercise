@@ -84,6 +84,7 @@ export class NamingTaskComponent extends BasicTask {
 					this.addHint("badge-danger", "Falsch! " + val + " ist kein Bestandteil!");
 				}
 			});
+		super.savePoints();
 	}
 
     /**

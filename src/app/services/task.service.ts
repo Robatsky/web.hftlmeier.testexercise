@@ -28,6 +28,8 @@ export class TaskService {
 	public updateTaskPoints(id: number, points: number) {
 		const entry = this.arr.find(element => element.id == id);
 		entry.results.reachedPoints.push(points);
+		console.log("neues Punkte-Array: " + entry.results.reachedPoints);
+		
 	}
 
 	/**
@@ -60,12 +62,21 @@ export class TaskService {
 	 * @return the component as a TaskEntry object
 	 */
 	private taskComponentToTaskEntry(comp: BasicTask): TaskEntry {
-		return { id: comp.getID(), results: { reachedPoints: [] }, data: null };
+		return { id: comp.getID(), title: comp.getTitle(), results: { reachedPoints: [] }, data: null };
+	}
+
+	public getAllTasknames(): string[] {
+		return this.arr.map(e => e.title);
+	}
+
+	public getAllTaskResults(): ResultSet[] {
+		return this.arr.map(e => e.results);
 	}
 }
 
 interface TaskEntry {
 	id: number,
+	title:string,
 	results: ResultSet,
 	data: any
 }

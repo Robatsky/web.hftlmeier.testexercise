@@ -53,7 +53,11 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
 	 * the second page.
 	 */
     private nextTask(): void {
-        this.router.navigateByUrl(this.router.config[this.id + 2].path);
+        this.router.navigateByUrl(this.router.config[(this.id + 2) % this.router.config.length].path);
+    }
+
+    public savePoints() : void {
+        this.taskService.updateTaskPoints(this.id, this.points);
     }
 
     /**
@@ -109,7 +113,7 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
 	 * Evaluates the inputs from the user.
 	 * If there are empty input fields there is no further evaluation.	
 	 */
-    public abstract evaluateInput(): void;
+    public abstract evaluateInput(): void ;
 
     /**
      * Stores the current state of the component.

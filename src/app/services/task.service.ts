@@ -25,6 +25,11 @@ export class TaskService {
 		return false;
 	}
 
+	public updateTaskPoints(id: number, points: number) {
+		const entry = this.arr.find(element => element.id == id);
+		entry.results.reachedPoints.push(points);
+	}
+
 	/**
 	 * Stores/overwrites the given information (results and data) for the task
 	 * with the corresponding id.

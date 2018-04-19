@@ -46,6 +46,7 @@ export class DnDtaskComponent extends BasicTask {
 				this.addHint("badge-danger", "Falsch! \"" + answer + "\" ist keine richtige Antwort");
 			}
 		});
+		super.savePoints();
 	}
 
 

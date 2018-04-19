@@ -45,7 +45,7 @@ export class ArrayUtil {
      * @param array the array to be copied
      * @return an copy of the given array
      */
-    public static copyOf(array: string[]): string[] {
+    public static copyOf(array: string[]): any[] {
         return array.slice(0, array.length);
     }
 

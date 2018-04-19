@@ -9,6 +9,7 @@ import { NamingTaskComponent } from './components/naming-task/naming-task.compon
 import { DnDtaskComponent } from './components/dnd-task/dnd-task.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { DragulaModule } from 'ng2-dragula';
+import { TaskService } from './services/task.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { DragulaModule } from 'ng2-dragula';
     FormsModule,
     DragulaModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

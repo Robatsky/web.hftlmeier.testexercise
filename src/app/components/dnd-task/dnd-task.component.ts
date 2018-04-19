@@ -3,22 +3,22 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DragulaService } from 'ng2-dragula';
 import { ArrayUtil } from '../../util/ArrayUtil';
 import { BasicTask } from '../../model/task/BasicTask';
+import { TaskService } from '../../services/task.service';
 
 @Component({
 	selector: 'app-dn-dtask',
 	templateUrl: './dnd-task.component.html',
 })
 export class DnDtaskComponent extends BasicTask {
-
 	public evaluatedTask: boolean = false;
 
 	public answers: string[] = [];
 	public possibleAnswers: string[];
 
 	constructor(route: ActivatedRoute, router: Router,
+		taskService: TaskService,
 		private dragulaService: DragulaService) {
-		super(route, router);
-
+		super(route, router, taskService);
 		this.possibleAnswers = ArrayUtil.shuffle(
 			ArrayUtil.copyOf(super.getData().possibleAnswers));
 
@@ -48,6 +48,36 @@ export class DnDtaskComponent extends BasicTask {
 		});
 	}
 
+
+    /**
+     * Stores the current state of the component.
+     */
+	public storeInputValues(): void {
+		const data = {
+			answers: this.answers,
+			possibleAnswers: this.possibleAnswers,
+			hints: this.hints
+		};
+		console.log("Storing for " + this.title + " ... " + data);
+
+		this.taskService.storeTaskData(this.id, null, data);
+	}
+
+
+    /**
+     * Restores the most recent state of the component.
+     */
+	public restoreInputValues(): void {
+		let task = this.taskService.restoreTaskData(this.id);
+		console.log("Restoring for " + this.title + " ... " + task);
+
+		if (task.data != null) {
+			this.answers = ArrayUtil.copyOf(task.data.answers);
+			this.possibleAnswers = ArrayUtil.copyOf(task.data.possibleAnswers);
+			this.hints = ArrayUtil.copyOf(task.data.hints);
+		}
+	}
+
 	/**
 	 * Resets the attributes of the current task to its default values.
 	 */
@@ -60,10 +90,10 @@ export class DnDtaskComponent extends BasicTask {
 
 	}
 
-		/**
-	 * Checks and returns whether the task has already been evaluated.
-	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
-	 */
+	/**
+ * Checks and returns whether the task has already been evaluated.
+ * @return {@code true} if the task is already evaluated, {@code false} otherwise.
+ */
 	public alreadyEvaluated(): boolean {
 		return this.evaluatedTask;
 	}

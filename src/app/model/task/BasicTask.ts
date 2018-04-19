@@ -1,11 +1,12 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { OnDestroy, OnInit } from "@angular/core";
+import { TaskService } from "../../services/task.service";
 
-export abstract class BasicTask { // OnInit, OnDestroy
+export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDestroy
 
     // model attributes containing important information
     // about this task
-    private id: number;
+    protected id: number;
     public title: string;
     public question: string;
     public data: any;
@@ -16,13 +17,34 @@ export abstract class BasicTask { // OnInit, OnDestroy
     public hints = [{ styleClass: "", text: "" }];
 
     constructor(private route: ActivatedRoute,
-        private router: Router) {
+        private router: Router,
+        protected taskService: TaskService) {
         this.id = route.snapshot.data[0].id;
         this.title = route.snapshot.data[0].name;
         this.data = route.snapshot.data[0].data;
         this.question = route.snapshot.data[0].question;
+
+        console.log("Registered: " + this.taskService.registerTaskComponent(this));
     }
 
+
+    /**
+     * Gets called each time the component loses focus.
+     * Calls the {@see storeInputValues()} method.
+     */
+    ngOnDestroy(): void {
+        console.log("Task " + this.id + " [" + this.title + "] got destroyed");
+        this.storeInputValues();
+    }
+
+    /**
+     * Gets called each time the component is getting the focus.
+     * Calls the {@see restoreInputValues()} method.
+     */
+    ngOnInit(): void {
+        console.log("Task " + this.id + " [" + this.title + "] got initialized");
+        this.restoreInputValues();
+    }
 
 	/**
 	 * Jumpes to the next task.
@@ -75,10 +97,27 @@ export abstract class BasicTask { // OnInit, OnDestroy
         this.points += val;
     }
 
+    /**
+     * Returns the id of this task.
+     * @return the id.
+     */
+    public getID(): number {
+        return this.id;
+    }
+
 	/**
 	 * Evaluates the inputs from the user.
 	 * If there are empty input fields there is no further evaluation.	
 	 */
     public abstract evaluateInput(): void;
 
+    /**
+     * Stores the current state of the component.
+     */
+    public abstract storeInputValues(): void;
+
+    /**
+     * Restores the most recent state of the component.
+     */
+    public abstract restoreInputValues(): void;
 }

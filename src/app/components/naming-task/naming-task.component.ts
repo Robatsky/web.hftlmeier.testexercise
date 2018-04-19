@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArrayUtil } from '../../util/ArrayUtil';
 import { BasicTask } from '../../model/task/BasicTask';
 import { InputMatcher } from '../../util/InputMatcher';
+import { TaskService } from '../../services/task.service';
 
 @Component({
 	selector: 'app-naming-task',
@@ -17,9 +18,10 @@ export class NamingTaskComponent extends BasicTask {
 	// input-values
 	public userInputs = [{ value: '' }];
 
-	constructor(route: ActivatedRoute, router: Router) {
-		super(route, router);
-		
+	constructor(route: ActivatedRoute, router: Router,
+		taskService: TaskService) {
+		super(route, router, taskService);
+
 	}
 
 	/**
@@ -83,6 +85,37 @@ export class NamingTaskComponent extends BasicTask {
 				}
 			});
 	}
+
+    /**
+     * Stores the current state of the component.
+     */
+	public storeInputValues(): void {
+		const data = {
+			userInputs: this.userInputs,
+			taskCompleted: this.taskCompleted,
+			evaluatedTask: this.evaluatedTask,
+			hints: this.hints
+		};
+		console.log("Storing for " + this.title + " ... " + data);
+
+		this.taskService.storeTaskData(this.id, null, data);
+	}
+
+	/**
+     * Restores the most recent state of the component.
+     */
+	public restoreInputValues(): void {
+		let task = this.taskService.restoreTaskData(this.id);
+		console.log("Restoring for " + this.title + " ... " + task);
+
+		if (task.data != null) {
+			this.userInputs = ArrayUtil.copyOf(task.data.userInputs);
+			this.hints = ArrayUtil.copyOf(task.data.hints);
+			this.taskCompleted = task.data.taskCompleted;
+			this.evaluatedTask = task.data.evaluatedTask;
+		}
+	}
+
 
 
 	/**

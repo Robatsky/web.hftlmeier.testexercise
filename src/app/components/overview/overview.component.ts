@@ -41,17 +41,15 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    // = ['A','B','C']
-    /* = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  ];*/
-
-    this.chartLabels = ["Aufgabe 1", "Aufgabe2", "Aufgabe3"];//this.taskService.getAllTasknames();
-    this.taskService.getAllTaskResults().forEach(e => {
-        //this.chartData.push({data: e.reachedPoints});
+    const taskNames = this.taskService.getAllTasknames();
+    
+    let maxTries = 0;
+    this.taskService.getAllTaskResults().forEach((e,idx) => {
+        this.chartData.push({data: e.reachedPoints, label:  taskNames[idx]});      
+        maxTries = Math.max(maxTries, e.reachedPoints.length);
     });
-    this.chartData = [{data: [3, 4, 2], label: "Versuch #1"}, {data: [4, 3, 6], label: "Versuch #2"}];
+
+    this.chartLabels = Array.from(new Array(maxTries).keys()).map(e => "#" + e);
   }
 
   public nextTask(): void {

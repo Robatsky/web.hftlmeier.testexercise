@@ -101,6 +101,9 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
      */
     public increatePoints(val: number): void {
         this.points += val;
+        if(this.points < 0) {
+            this.points = 0;
+        }
     }
 
     /**

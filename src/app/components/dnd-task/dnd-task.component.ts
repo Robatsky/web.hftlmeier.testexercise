@@ -83,6 +83,7 @@ export class DnDtaskComponent extends BasicTask {
 	 * Resets the attributes of the current task to its default values.
 	 */
 	public reset(): void {
+		super.reset();
 		this.evaluatedTask = false;
 		this.answers = [];
 		this.possibleAnswers = [];

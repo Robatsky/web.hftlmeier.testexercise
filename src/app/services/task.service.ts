@@ -28,7 +28,6 @@ export class TaskService {
 	public updateTaskPoints(id: number, points: number) {
 		const entry = this.arr.find(element => element.id == id);
 		entry.results.reachedPoints.push(points);
-		console.log("neues Punkte-Array: " + entry.results.reachedPoints);
 		
 	}
 

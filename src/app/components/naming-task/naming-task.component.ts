@@ -72,18 +72,28 @@ export class NamingTaskComponent extends BasicTask {
 
 		this.evaluatedTask = true;
 
-		this.userInputs.map(val => val.value)
-			.forEach(val => {
-				const lowerCaseAnswers = super.getAnswers().map(val => val.toLocaleLowerCase());
-				console.log(ArrayUtil.arrayApproxContains(lowerCaseAnswers, val.toLocaleLowerCase()));
+		const lowerCaseAnswers = super.getAnswers().map(val => val.toLowerCase());
+		let removedAnswers = [];
 
-				if (ArrayUtil.arrayApproxContains(lowerCaseAnswers, val.toLocaleLowerCase())) {
-					this.increatePoints(1);
-					this.addHint("badge-success", "Richtig! " + val + " ist ein wichtiger Bestandteil");
-				} else {
-					this.addHint("badge-danger", "Falsch! " + val + " ist kein Bestandteil!");
+		this.userInputs.map(val => val.value).forEach(val => {
+
+			if (removedAnswers.length > 0) {
+				if (ArrayUtil.arrayApproxContains(removedAnswers, val.toLowerCase()) != -1) {
+					this.addHint("badge-warning", "Achtung! " + val + " ist bereits vorhanden und wird daher nicht beachtet");
+					return;
 				}
-			});
+			}
+
+			const idx = ArrayUtil.arrayApproxContains(lowerCaseAnswers, val.toLowerCase());
+
+			if (idx != -1) {
+				removedAnswers.push(lowerCaseAnswers.splice(idx, 1)[0]);
+				this.increatePoints(1);
+				this.addHint("badge-success", "Richtig! " + val + " ist ein wichtiger Bestandteil");
+			} else {
+				this.addHint("badge-danger", "Falsch! " + val + " ist kein Bestandteil!");
+			}
+		});
 		super.savePoints();
 	}
 
@@ -97,8 +107,6 @@ export class NamingTaskComponent extends BasicTask {
 			evaluatedTask: this.evaluatedTask,
 			hints: this.hints
 		};
-		console.log("Storing for " + this.title + " ... " + data);
-
 		this.taskService.storeTaskData(this.id, null, data);
 	}
 
@@ -107,9 +115,8 @@ export class NamingTaskComponent extends BasicTask {
      */
 	public restoreInputValues(): void {
 		let task = this.taskService.restoreTaskData(this.id);
-		console.log("Restoring for " + this.title + " ... " + task);
 
-		if (task.data != null) {
+		if (task != null && task.data != null) {
 			this.userInputs = ArrayUtil.copyOf(task.data.userInputs);
 			this.hints = ArrayUtil.copyOf(task.data.hints);
 			this.taskCompleted = task.data.taskCompleted;

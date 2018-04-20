@@ -24,7 +24,6 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
         this.data = route.snapshot.data[0].data;
         this.question = route.snapshot.data[0].question;
 
-        console.log("Registered: " + this.taskService.registerTaskComponent(this));
     }
 
 
@@ -33,7 +32,6 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
      * Calls the {@see storeInputValues()} method.
      */
     ngOnDestroy(): void {
-        console.log("Task " + this.id + " [" + this.title + "] got destroyed");
         this.storeInputValues();
     }
 
@@ -42,7 +40,6 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
      * Calls the {@see restoreInputValues()} method.
      */
     ngOnInit(): void {
-        console.log("Task " + this.id + " [" + this.title + "] got initialized");
         this.restoreInputValues();
     }
 
@@ -57,8 +54,6 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
     }
 
     public savePoints() : void {
-        console.log(this.title + " neue Punkte: " + this.points + " added");
-        
         this.taskService.updateTaskPoints(this.id, this.points);
     }
 

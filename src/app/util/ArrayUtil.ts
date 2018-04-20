@@ -29,15 +29,18 @@ export class ArrayUtil {
      * @param value the word to be checked
      * @return {@code true} the at least one of the distances is less than 5, {@code false} otherwise
      */
-    public static arrayApproxContains(array: string[], value: string): boolean {
+    public static arrayApproxContains(array: string[], value: string): number {
         let min = Number.MAX_SAFE_INTEGER;
-
-        array.forEach(entry => {
-            const currentMin = InputMatcher.levenstheinDistance(entry.toLocaleLowerCase(), value.toLowerCase());
-            min = Math.min(currentMin, min);
+        let idx = -1;
+        array.forEach((entry,id) => {
+            const currentMin = InputMatcher.levenstheinDistance(entry.toLowerCase(), value.toLowerCase());
+            if(currentMin < min) {
+                min = currentMin;
+                idx = id;
+            }
         });
 
-        return min <= 5;
+        return min <= 5 ? idx : -1;
     }
 
     /**

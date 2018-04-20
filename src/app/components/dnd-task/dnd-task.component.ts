@@ -59,8 +59,6 @@ export class DnDtaskComponent extends BasicTask {
 			possibleAnswers: this.possibleAnswers,
 			hints: this.hints
 		};
-		console.log("Storing for " + this.title + " ... " + data);
-
 		this.taskService.storeTaskData(this.id, null, data);
 	}
 
@@ -70,9 +68,7 @@ export class DnDtaskComponent extends BasicTask {
      */
 	public restoreInputValues(): void {
 		let task = this.taskService.restoreTaskData(this.id);
-		console.log("Restoring for " + this.title + " ... " + task);
-
-		if (task.data != null) {
+		if (task != null && task.data != null) {
 			this.answers = ArrayUtil.copyOf(task.data.answers);
 			this.possibleAnswers = ArrayUtil.copyOf(task.data.possibleAnswers);
 			this.hints = ArrayUtil.copyOf(task.data.hints);

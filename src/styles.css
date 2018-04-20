@@ -37,3 +37,8 @@ div.dragula-bag div {
 div.dragula-bag div~div {
     border-top: 1px solid white;
 }
+
+
+.gu-mirror {
+    display: none; /* in order to stop mirroring items in dragula */
+}

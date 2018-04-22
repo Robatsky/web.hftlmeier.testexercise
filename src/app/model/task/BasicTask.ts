@@ -31,7 +31,7 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
      * Gets called each time the component loses focus.
      * Calls the {@see storeInputValues()} method.
      */
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
         this.storeInputValues();
     }
 
@@ -39,7 +39,7 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
      * Gets called each time the component is getting the focus.
      * Calls the {@see restoreInputValues()} method.
      */
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.restoreInputValues();
     }
 

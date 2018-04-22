@@ -25,6 +25,12 @@ export class TaskService {
 		return false;
 	}
 
+	/**
+	 * Takes an id and the amount of points and updates the
+	 * point array of the corresponding task.
+	 * @param id the id of the task to be updated
+	 * @param points the points to push into the points array
+	 */
 	public updateTaskPoints(id: number, points: number) {
 		const entry = this.arr.find(element => element.id == id);
 		entry.results.reachedPoints.push(points);
@@ -64,10 +70,18 @@ export class TaskService {
 		return { id: comp.getID(), title: comp.getTitle(), results: { reachedPoints: [] }, data: null };
 	}
 
+	/**
+	 * Returns an array containing all tasknames.
+	 * @return an array of tasknames
+	 */
 	public getAllTasknames(): string[] {
 		return this.arr.map(e => e.title);
 	}
 
+	/**
+	 * Returns an array containing the ResultSet of each task.
+	 * @return an array of resultsets.
+	 */
 	public getAllTaskResults(): ResultSet[] {
 		return this.arr.map(e => e.results);
 	}
@@ -82,5 +96,4 @@ interface TaskEntry {
 
 interface ResultSet {
 	reachedPoints: number[],
-
 }

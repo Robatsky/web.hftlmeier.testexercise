@@ -89,9 +89,9 @@ export class DnDtaskComponent extends BasicTask {
 	}
 
 	/**
- * Checks and returns whether the task has already been evaluated.
- * @return {@code true} if the task is already evaluated, {@code false} otherwise.
- */
+	 * Checks and returns whether the task has already been evaluated.
+	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
+	 */
 	public alreadyEvaluated(): boolean {
 		return this.evaluatedTask;
 	}

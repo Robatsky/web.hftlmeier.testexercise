@@ -12,6 +12,7 @@ export class OverviewComponent implements OnInit {
   public description: string;
   public taskamount: number;
 
+  /** chart options */
   public chartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
@@ -27,6 +28,7 @@ export class OverviewComponent implements OnInit {
     }
   };
 
+  /** chart constants */
   public chartLabels: string[];
   public chartType: string = 'bar';
   public chartLegend: boolean = true;
@@ -40,13 +42,13 @@ export class OverviewComponent implements OnInit {
     this.taskamount = route.snapshot.data[0].taskamount;
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     const taskNames = this.taskService.getAllTasknames();
-    
+
     let maxTries = 0;
-    this.taskService.getAllTaskResults().forEach((e,idx) => {
-        this.chartData.push({data: e.reachedPoints, label:  taskNames[idx]});      
-        maxTries = Math.max(maxTries, e.reachedPoints.length);
+    this.taskService.getAllTaskResults().forEach((e, idx) => {
+      this.chartData.push({ data: e.reachedPoints, label: taskNames[idx] });
+      maxTries = Math.max(maxTries, e.reachedPoints.length);
     });
 
     this.chartLabels = Array.from(new Array(maxTries).keys()).map(e => "#" + e);

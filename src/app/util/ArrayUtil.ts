@@ -88,4 +88,8 @@ export class ArrayUtil {
     public static arrayContains<T>(arr: T[], val: T): boolean {
         return arr.indexOf(val) != -1;
     }
+
+    public static isEmpty<T>(arr: T[]): boolean {
+        return arr.length === 0;
+    }
 }

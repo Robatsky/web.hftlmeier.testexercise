@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { OnDestroy, OnInit } from "@angular/core";
 import { TaskService } from "../../services/task.service";
 
-export abstract class BasicTask implements OnInit, OnDestroy { 
+export abstract class BasicTask implements OnInit, OnDestroy {
 
     // model attributes containing important information
     // about this task
@@ -17,6 +17,9 @@ export abstract class BasicTask implements OnInit, OnDestroy {
     public maxpoints: number;
 
     public hints = [{ styleClass: "", text: "" }];
+
+    public evaluatedTask: boolean = false;
+
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -58,7 +61,7 @@ export abstract class BasicTask implements OnInit, OnDestroy {
         this.router.navigateByUrl(this.router.config[(this.id + 2) % this.router.config.length].path);
     }
 
-    public savePoints() : void {
+    public savePoints(): void {
         this.taskService.updateTaskPoints(this.id, this.points);
     }
 
@@ -119,11 +122,20 @@ export abstract class BasicTask implements OnInit, OnDestroy {
         return this.title;
     }
 
+    /**
+	 * Checks and returns whether the task has already been evaluated.
+	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
+	 */
+    public alreadyEvaluated(): boolean {
+        return this.evaluatedTask;
+    }
+
+
 	/**
 	 * Evaluates the inputs from the user.
 	 * If there are empty input fields there is no further evaluation.	
 	 */
-    public abstract evaluateInput(): void ;
+    public abstract evaluateInput(): void;
 
     /**
      * Stores the current state of the component.
@@ -134,4 +146,10 @@ export abstract class BasicTask implements OnInit, OnDestroy {
      * Restores the most recent state of the component.
      */
     public abstract restoreInputValues(): void;
+}
+
+export enum Hints {
+    Correct = "badge-success",
+    Wrong = "badge-danger",
+    Info = "badge-warning"
 }

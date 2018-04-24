@@ -18,14 +18,15 @@
 
     <h4>Statistik</h4>
     <div class="row">
-      <div class="col-md-6">
-        <div style="display: block">
+      <div class="col-md-12">
+        <div>
           <canvas baseChart
                   [datasets]="chartData"
                   [labels]="chartLabels"
                   [options]="chartOptions"
                   [legend]="chartLegend"
-                  [chartType]="chartType"></canvas>
+                  [chartType]="chartType"
+                  style="width: 100%;" ></canvas>
         </div>
       </div>
   </div>

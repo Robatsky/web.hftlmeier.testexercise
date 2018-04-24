@@ -10,7 +10,6 @@ import { TaskService } from '../../services/task.service';
 	templateUrl: './dnd-task.component.html',
 })
 export class DnDtaskComponent extends BasicTask {
-	public evaluatedTask: boolean = false;
 
 	public answers: string[] = [];
 	public possibleAnswers: string[];
@@ -87,13 +86,4 @@ export class DnDtaskComponent extends BasicTask {
 			ArrayUtil.copyOf(super.getData().possibleAnswers));
 
 	}
-
-	/**
-	 * Checks and returns whether the task has already been evaluated.
-	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
-	 */
-	public alreadyEvaluated(): boolean {
-		return this.evaluatedTask;
-	}
-
 }

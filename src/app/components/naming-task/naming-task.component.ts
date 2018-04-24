@@ -13,7 +13,6 @@ export class NamingTaskComponent extends BasicTask {
 
 	// booleans to toggle button states
 	public taskCompleted: boolean = false;
-	public evaluatedTask: boolean = false;
 
 	// input-values
 	public userInputs = [{ value: '' }];
@@ -30,14 +29,6 @@ export class NamingTaskComponent extends BasicTask {
 	 */
 	private deleteInputField(index: number): void {
 		this.userInputs.splice(index, 1);
-	}
-
-	/**
-	 * Checks and returns whether the task has already been evaluated.
-	 * @return {@code true} if the task is already evaluated, {@code false} otherwise.
-	 */
-	public alreadyEvaluated(): boolean {
-		return this.evaluatedTask;
 	}
 
 	/**

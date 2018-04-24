@@ -76,12 +76,12 @@
             "id": 4,
             "type": 2,
             "name": "Socketprogrammierung",
-            "question": "Nennen Sie alle Zeilen im Code, der einen blockierenden Aufruf verursacht.",
-            "maxpoints": 3,
+            "question": "Nennen Sie alle Zeilen im Code, die einen blockierenden Aufruf verursachen.<br/>Tragen Sie die Zeilen als kommaseparierte Liste in das untenstehende Textfeld ein.<br/><br/><small>Für jede richtige Antwort erhalten Sie einen Punkt, für jede falsche Antwort einen Minuspunkt</small>",
+            "maxpoints": 2,
             "reqpoints": 1,
             "data": {
-                "code": "public class Exercise {\n  public static void main(String[] args){\n  }\n}",
-                "correctLines": [1,2,3]
+                "code": "public class EchoClient {\n    public static void main(String[] args) {\n        try(Socket socket = new Socket(\"localhost\", 5555);\n            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));\n            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {\n\n            Scanner scanner = new Scanner(System.in);\n            String input = scanner.nextLine();\n\n            writer.println(input);\n            System.out.println(reader.readLine());\n\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}",
+                "correctLines": [8,11]
             }
         }
     ]

@@ -26,7 +26,7 @@
       <button [disabled]="alreadyEvaluated()" class="btn btn-default" (click)="addInputField()">Antwort hinzufügen</button>
       <div class=" float-right">
         <button [disabled]="alreadyEvaluated()" class="btn btn-success" (click)="evaluateInput()">Auswerten</button>
-        <button *ngIf="points >= data.reqpoints" class="btn btn-success" (click)="nextTask()">Weiter</button>
+        <button *ngIf="points >= reqpoints" class="btn btn-success" (click)="nextTask()">Weiter</button>
         <button class="btn btn-danger" (click)="reset()">Noch mal</button>
       </div>
     </form>
@@ -36,9 +36,9 @@
     </div>
     <div *ngIf="evaluatedTask">
       <hr>
-      <span>Erreichte Anzahl an Punkten: {{points}}/{{data.maxpoints}}</span>
+      <span>Erreichte Anzahl an Punkten: {{points}}/{{maxpoints}}</span>
       <br>
-      <span *ngIf="points < data.reqpoints">Sie brauchen mindestens {{data.reqpoints}} Punkte um vorzufahren.</span>
+      <span *ngIf="points < reqpoints">Sie brauchen mindestens {{reqpoints}} Punkte um vorzufahren.</span>
     </div>
   </div>
 </section>

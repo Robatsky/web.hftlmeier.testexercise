@@ -7,9 +7,9 @@
             "type": 0,
             "name": "Aufgabe 1",
             "question": "Ziel dieser Aufgabe ist die Überprüfung Ihres Verständnisses zum Thema Verschlüsselung.<br/><b>Welche Nachteile bestehen im Zusammenhang mit der asymmetrischen Verschlüsselung?<br/><br/><small>Hinweis:<br/>Fahren Sie mit der Maus über die Antwort die Sie bewegen möchten, halten Sie die linke Maustaste gedrückt und schieben Sie die Antwort in den grünen Container.<br/> Für jede richtige Antwort erhalten Sie 1 Punkt, für jede falsche Antwort -0,5 Punkte</small>",
+            "maxpoints": 2,
+            "reqpoints": 1,
             "data": {
-                "maxpoints": 2,
-                "reqpoints": 1,
                 "answers": [
                     "Sie ist vergleichsweise rechenaufwändig.",
                     "Man benötigt zusätzliche Maßnahmen gegen \"Man-in-the-Middle\"-Angriffe."
@@ -27,9 +27,9 @@
             "type": 1,
             "name": "Aufgabe 2",
             "question": "Dem Andwender einer verteilten Anwendung sollte möglichst verborgen werden, aus welchen VA-Komponenten eine Anwendung aufgebaut ist und auf welchen VS-Knoten sich die einzelnen Komponenten befinden. Eine Anwendung, die diese Dtails verbirgt, wird als <i>transparent</i> bezeichnet.<br><b>Nennen Sie die ihnen bekannten Transparenzarten!</b>",
+            "maxpoints": 6,
+            "reqpoints": 3,
             "data": {
-                "maxpoints": 6,
-                "reqpoints": 3,
                 "answers": [
                     "Zugriffstransparenz",
                     "Ortstransparenz",
@@ -45,9 +45,9 @@
             "type": 1,
             "name": "Aufgabe 21111",
             "question": "Hier könnte ein Aufgabentext stehen",
+            "maxpoints": 10,
+            "reqpoints": 2,
             "data": {
-                "maxpoints": 10,
-                "reqpoints": 2,
                 "answers": [
                     "Antwort A",
                     "Antwort B",
@@ -61,15 +61,27 @@
             "type": 1,
             "name": "Früchteaufgabe",
             "question": "Hier könnte ein Aufgabentext stehen",
+            "maxpoints": 5,
+            "reqpoints": 2,
             "data": {
-                "maxpoints": 5,
-                "reqpoints": 2,
                 "answers": [
                     "Banane",
                     "Apfel",
                     "Orange",
                     "Kiwi"
                 ]
+            }
+        }, 
+        {
+            "id": 4,
+            "type": 2,
+            "name": "Socketprogrammierung",
+            "question": "Nennen Sie alle Zeilen im Code, der einen blockierenden Aufruf verursacht.",
+            "maxpoints": 3,
+            "reqpoints": 1,
+            "data": {
+                "code": "public class Exercise {\n  public static void main(String[] args){\n  }\n}",
+                "correctLines": [1,2,3]
             }
         }
     ]

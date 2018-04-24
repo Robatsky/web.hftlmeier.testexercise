@@ -13,6 +13,8 @@ export abstract class BasicTask implements OnInit, OnDestroy {
 
     // points the user has collected
     public points: number;
+    public reqpoints: number;
+    public maxpoints: number;
 
     public hints = [{ styleClass: "", text: "" }];
 
@@ -23,7 +25,10 @@ export abstract class BasicTask implements OnInit, OnDestroy {
         this.title = route.snapshot.data[0].name;
         this.data = route.snapshot.data[0].data;
         this.question = route.snapshot.data[0].question;
+        this.reqpoints = route.snapshot.data[0].reqpoints;
+        this.maxpoints = route.snapshot.data[0].maxpoints;
 
+        taskService.registerTaskComponent(this);
     }
 
 

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DnDtaskComponent } from './components/dnd-task/dnd-task.component';
 import { NamingTaskComponent } from './components/naming-task/naming-task.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { MarkCodeLineComponent } from './components/mark-code-line/mark-code-line.component';
 
 // possible? best practise? 
 declare var require: any;
@@ -45,7 +46,6 @@ function loadRouteComponents(justLoad: boolean): Routes {
         loadedRoutes.push(route);
     });
 
-
     return loadedRoutes;
 }
 
@@ -64,6 +64,7 @@ function convertTaskToRoute(task) {
     const map = [
         ["dnd", DnDtaskComponent],
         ["naming", NamingTaskComponent],
+        ["markcodeline", MarkCodeLineComponent]
     ];
 
     let mapper = map[task.type];
@@ -78,6 +79,8 @@ function convertTaskToRoute(task) {
                 id: task.id,
                 name: task.name,
                 question: task.question,
+                reqpoints: task.reqpoints,
+                maxpoints: task.maxpoints,
                 data: task.data
             }
         ]

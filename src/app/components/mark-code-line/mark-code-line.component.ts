@@ -48,7 +48,13 @@ export class MarkCodeLineComponent extends BasicTask {
 		super.reset();
 
 		const inputParts = this.input.split(",");
-		const lineNumbers = inputParts.filter(this.numberFilter).map(e => parseInt(e));
+		let lineNumbers = inputParts.filter(this.numberFilter).map(e => parseInt(e));
+
+		if(ArrayUtil.hasDuplicates(lineNumbers)) {
+			super.addHint(Hints.Info, "Duplikate wurden ignoriert!");
+		}
+
+		lineNumbers = lineNumbers.filter(ArrayUtil.distinctFilter);
 
 		if (ArrayUtil.isEmpty(lineNumbers)) {
 			super.addHint(Hints.Wrong, "Wählen Sie mindestens eine Antwort aus!");

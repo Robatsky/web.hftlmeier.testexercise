@@ -13,7 +13,7 @@ export class ArrayUtil {
      * @param array the array to be shuffled
      * @return the shuffled array.
      */
-    public static shuffle(array: string[]): string[] {
+    public static shuffle<T>(array: T[]): T[] {
         let counter = array.length;
 
         while (counter > 0) {
@@ -31,7 +31,7 @@ export class ArrayUtil {
      * @param curr the first element to be swapped
      * @param next the second element to be swapped
      */
-    private static swap(array: string[], curr: number, next:number) {
+    private static swap<T>(array: T[], curr: number, next:number) {
         let temp = array[curr];
         array[curr] = array[next];
         array[next] = temp;
@@ -74,7 +74,7 @@ export class ArrayUtil {
      * @param array the array to be copied
      * @return an copy of the given array
      */
-    public static copyOf(array: string[]): any[] {
+    public static copyOf<T>(array: T[]): T[] {
         return array.slice(0, array.length);
     }
 
@@ -89,7 +89,33 @@ export class ArrayUtil {
         return arr.indexOf(val) != -1;
     }
 
+    /**
+     * Checks whether the given array is empty or not.
+     * @param arr the array to be checked
+     * @return {@code true} if the given array is empty, {@code false} otherwise.
+     */
     public static isEmpty<T>(arr: T[]): boolean {
         return arr.length === 0;
     }
+    
+    /**
+     * Checks whether the given array has duplicated values or not.
+     * @param arr the array to be checked.
+     * @return {@code true} if the array has duplicates, {@code false} otherwise.
+     */
+    public static hasDuplicates<T>(arr: T[]): boolean {
+        return arr.length != new Set(arr).size;
+    }
+    
+    /**
+     * Checks whether the given element is unique in the array or not.
+     * @param elem the element to be tested if there are duplicates
+     * @param pos the position of the element to be tested
+     * @param arr the array to be tested
+     * @return {@code true} if element is not unique, {@code false} otherwise.
+     */
+	public static distinctFilter<T>(elem: T, pos: number, arr: T[]): boolean {
+		return arr.indexOf(elem) === pos;
+	}
+
 }

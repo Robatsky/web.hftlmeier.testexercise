@@ -60,6 +60,7 @@ Each task entry is considered to have the following child elements
 |----|----------------------| 
 | 0  |  Drag and Drop Task  | 
 | 1  |  Naming Task         |
+| 2  |  Mark-Code-Line Task |
 ```
 #
 The `data` element is different for each task type. It basically contains specific information about this task such as an answers array, a collection with possible answers, etc.  
@@ -94,6 +95,16 @@ Here are the data elements described for all different tasktypes:
 }
 ```
 `answers` - contains all the answers that are correct
+
+**Mark-Code-Line Task**
+```json
+{
+   "code": "public class EchoClient {\n    public static void main(String[] args) {\n    }\n    }\n}",
+   "correctLines": [1,2]
+}
+```
+`code` - contains the code to be displayed  
+`correctLines`- is an array containing all the correct lines 
 
 ** Example **
 ```json
@@ -133,6 +144,18 @@ Here are the data elements described for all different tasktypes:
                     "Naming-Task",
 					"DragAndDrop-Task"
                 ]
+            }
+        },
+        {
+            "id": 2,
+            "type": 2,
+            "name": "Socket-Programming",
+            "question": "List all lines in a comma seperated list that call a blocking function",
+            "maxpoints": 2,
+            "reqpoints": 1,
+            "data": {
+                "code": "public class EchoClient {\n    public static void main(String[] args) {\n        try(Socket socket = new Socket(\"localhost\", 5555);\n            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));\n            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {\n\n            Scanner scanner = new Scanner(System.in);\n            String input = scanner.nextLine();\n\n            writer.println(input);\n            System.out.println(reader.readLine());\n\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}",
+                "correctLines": [8,11]
             }
         }
     ]

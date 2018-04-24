@@ -39,10 +39,10 @@ export class DnDtaskComponent extends BasicTask {
 		this.evaluatedTask = true;
 		this.answers.forEach(answer => {
 			if (ArrayUtil.arrayContains(super.getAnswers(), answer)) {
-				super.increatePoints(1);
+				super.increasePoints(1);
 				this.addHint("badge-success", "Richtig! \"" + answer + "\" ist eine richtige Antwort.");
 			} else {
-				super.increatePoints(-.5);
+				super.increasePoints(-.5);
 				this.addHint("badge-danger", "Falsch! \"" + answer + "\" ist keine richtige Antwort");
 			}
 		});

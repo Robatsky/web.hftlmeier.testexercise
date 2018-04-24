@@ -88,7 +88,7 @@ export class NamingTaskComponent extends BasicTask {
 
 			if (idx != -1) {
 				removedAnswers.push(lowerCaseAnswers.splice(idx, 1)[0]);
-				this.increatePoints(1);
+				this.increasePoints(1);
 				this.addHint("badge-success", "Richtig! " + val + " ist ein wichtiger Bestandteil");
 			} else {
 				this.addHint("badge-danger", "Falsch! " + val + " ist kein Bestandteil!");

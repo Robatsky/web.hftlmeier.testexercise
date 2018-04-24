@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { OnDestroy, OnInit } from "@angular/core";
 import { TaskService } from "../../services/task.service";
 
-export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDestroy
+export abstract class BasicTask implements OnInit, OnDestroy { 
 
     // model attributes containing important information
     // about this task
@@ -94,11 +94,8 @@ export abstract class BasicTask implements OnInit, OnDestroy { // OnInit, OnDest
      * Increases the points by a certain amount.
      * @param val the amount to be added to the points
      */
-    public increatePoints(val: number): void {
-        this.points += val;
-        if(this.points < 0) {
-            this.points = 0;
-        }
+    public increasePoints(val: number): void {
+        this.points = Math.max(0, this.points + val);
     }
 
     /**

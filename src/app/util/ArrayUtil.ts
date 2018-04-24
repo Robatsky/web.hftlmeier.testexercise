@@ -3,6 +3,12 @@ import { InputMatcher } from "./InputMatcher";
 export class ArrayUtil {
 
     /**
+     * Private class in order to prevent this class from
+     * being extendet.
+     */
+    private constructor() {}
+
+    /**
      * Shuffles an array randomly and returns it.
      * @param array the array to be shuffled
      * @return the shuffled array.
@@ -13,12 +19,22 @@ export class ArrayUtil {
         while (counter > 0) {
             let index = Math.floor(Math.random() * counter);
             counter--;
-
-            let temp = array[counter];
-            array[counter] = array[index];
-            array[index] = temp;
+            this.swap(array, counter, index);
         }
         return array;
+    }
+
+    /**
+     * Swappes the element at the {@code curr} index with the element
+     * at the {@code next} index in the given {@code array}.
+     * @param array the array to swap the elements in
+     * @param curr the first element to be swapped
+     * @param next the second element to be swapped
+     */
+    private static swap(array: string[], curr: number, next:number) {
+        let temp = array[curr];
+        array[curr] = array[next];
+        array[next] = temp;
     }
 
     /**
@@ -40,7 +56,17 @@ export class ArrayUtil {
             }
         });
 
-        return min <= 5 ? idx : -1;
+        return this.isEvaluationGoodEnough(min) ? idx : -1;
+    }
+
+    /**
+     * If the given {@code value} is less than or equal to a certain
+     * number the evaluation is good enough and {@code true} is being returned.
+     * @param val value to be checked
+     * @return {@code true} if the evaluation is less than or equal to 5, {@code false} otherwise.
+     */
+    private static isEvaluationGoodEnough(val: number) {
+        return val <= 5;
     }
 
     /**

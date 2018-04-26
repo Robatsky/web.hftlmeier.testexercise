@@ -107,6 +107,50 @@ export class ArrayUtil {
         return arr.length != new Set(arr).size;
     }
     
+    
+    /**
+     * Returns the maximum element in the given array
+     * @param array array to find the maximum number
+     * @return the maximum element in the array
+     */
+    public static max<T>(array: T[]): T {
+        return array.reduce((prev,curr) => (prev > curr) ? prev : curr);
+    }
+
+    public static min<T>(array: T[]): T {
+        return array.reduce((prev, curr) => (prev < curr) ? prev : curr);
+    }
+
+    /**
+     * Removes all non-numeric elements from the given array and returns a new array
+     * containing only numeric elements.
+     * @param array the array to be filtered
+     * @return a new array containing the numeric elements of the given array.
+     */
+    public static filterNonNumeric(array: string[]): number[] {
+        return array.filter(this.numberFilter).map(e => parseInt(e));
+    }
+
+	/**
+	 * Method to test whether the given string is a number or not
+	 * @param e the argument to be tested
+	 * @return {@code true} if {@code e} is a number, {@code false} otherwise.
+	 */
+	private static numberFilter(e: string): boolean {
+		const regex = new RegExp(/^\d+$/);
+		return regex.test(e);
+    }
+
+    /**
+     * Removes all duplicates from the given array and returns a new array
+     * containing only the unique elements.
+     * @param array the array to be filtered
+     * @return an array containing the unique elements.
+     */
+    public static removeDuplicates<T>(array: T[]): T[] {
+        return array.filter(this.distinctFilter);
+    }
+    
     /**
      * Checks whether the given element is unique in the array or not.
      * @param elem the element to be tested if there are duplicates
@@ -116,6 +160,7 @@ export class ArrayUtil {
      */
 	public static distinctFilter<T>(elem: T, pos: number, arr: T[]): boolean {
 		return arr.indexOf(elem) === pos;
-	}
+    }
+
 
 }

@@ -48,23 +48,22 @@ export class MarkCodeLineComponent extends BasicTask {
 		super.reset();
 
 		const inputParts = this.input.split(",");
-		let lineNumbers = inputParts.filter(this.numberFilter).map(e => parseInt(e));
-
-		if(ArrayUtil.hasDuplicates(lineNumbers)) {
-			super.addHint(Hints.Info, "Duplikate wurden ignoriert!");
-		}
-
-		lineNumbers = lineNumbers.filter(ArrayUtil.distinctFilter);
+		let lineNumbers = ArrayUtil.filterNonNumeric(inputParts);
 
 		if (ArrayUtil.isEmpty(lineNumbers)) {
 			super.addHint(Hints.Wrong, "Wählen Sie mindestens eine Antwort aus!");
 			return;
 		}
 
-		if (Math.max.apply(lineNumbers) > this.codeLines) {
+		if (ArrayUtil.max(lineNumbers) > this.codeLines) {
 			super.addHint(Hints.Wrong, "Es darf keine Zeile angegeben werden, die größer ist als " + this.codeLines);
 			return;
 		}
+
+		if(ArrayUtil.hasDuplicates(lineNumbers)) {
+			super.addHint(Hints.Info, "Duplikate wurden ignoriert!");
+		}
+		lineNumbers = ArrayUtil.removeDuplicates(lineNumbers);
 
 		this.evaluatedTask = true;
 
@@ -92,16 +91,6 @@ export class MarkCodeLineComponent extends BasicTask {
 		super.reset();
 		this.evaluatedTask = false;
 		this.input = "";
-	}
-
-	/**
-	 * Method to test whether the given string is a number or not
-	 * @param e the argument to be tested
-	 * @return {@code true} if {@code e} is a number, {@code false} otherwise.
-	 */
-	private numberFilter(e: string): boolean {
-		const regex = new RegExp(/^\d+$/);
-		return regex.test(e);
 	}
 
     /**

@@ -1,0 +1,45 @@
+{
+    "name": "Verteilte Anwendungen - Grundlagen, Sockets und Multithreading",
+    "description": "Das Gebiet der Verteilten Anwendungen gehört heute zu den wesentlichen Gebieten der angewandten Informatik. Mitunter findet man die Thematik in der Literatur auch unter der Bezeichnung verteilte Systeme, wobei in diesem Modul eine deutliche Trennung zwischen den klassischen verteilten Systemen und den verteilten Anwendungen gezogen wird, was man sich am Beispiel des World Wide Web verdeutlichen kann.<br/>Diese Übung soll dazu dienen, die hier im ersten Kapitel des Moduls behandelten Themen zu festigen und dem Studenten dabei helfen, Wissenslücken auswendig zu machen und zu beheben.<br/> Die Punkteverteilung ist bei jeder Aufgabe gleich. Für jede richtige Antwort bekommt der Studierende einen Punkt, für jede falche Antwort -0.5 Punkte. Man benötigt eine gewisse Anzahl an Punkten um die nächste Aufgaben machen zu müssen.",
+    "tasks": [
+        {
+            "id": 0,
+            "type": 0,
+            "name": "Aufgabe 1",
+            "question": "Verteilte Systeme spielen in der heutigen Welt eine wichtige Rolle. Sie sind aus der Sicht eines Informatikers nicht wegzudenken.<br/><b>Welche der folgenden Aussagen sind Gründe für die Nutzung verteilter Anwendungen.</b>",
+            "maxpoints": 3,
+            "reqpoints": 2,
+            "data": {
+                "answers": [
+                    "Nachbilden der Realität",
+                    "Ausnutzung von Ressourcen",
+                    "Fehlertoleranz"
+                ],
+                "possibleAnswers": [
+                    "Nachbilden der Realität",
+                    "Ausnutzung von Ressourcen",
+                    "Leistungsminderung",
+                    "Fehlertoleranz"
+                ]
+            }
+        },
+        {
+            "id": 1,
+            "type": 1,
+            "name": "Aufgabe 2",
+            "question": "Eine Anwendung die es schafft Details über beispielsweise den Aufbau nach außen zu verbergen, wird als <i>transparent</i> bezeichnet.<br/><b>Nennen Sie die Ihnen bekannten Transparenzareten</b>. Leere Antworten sind <strong>nicht</strong> zulässig.",
+            "maxpoints": 6,
+            "reqpoints": 3,
+            "data": {
+                "answers": [
+                    "Zugriffstransparenz",
+                    "Ortstransparenz",
+                    "Migrationstransparenz",
+                    "Replikationstransparenz",
+                    "Nebenläufigkeitstransparenz",
+                    "Fehlertransparenz"
+                ]
+            }
+        }
+    ]
+}

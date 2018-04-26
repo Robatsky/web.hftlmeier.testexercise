@@ -7,8 +7,7 @@
   <small>Anzahl der Übungen: {{taskamount}}</small>
   <br>
   <br>
-  <p>
-    {{description}}
+  <p [innerHTML]="description">
   </p>
 
   <button class="btn btn-default" (click)="nextTask();">Los geht's.</button>

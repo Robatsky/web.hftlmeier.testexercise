@@ -12,6 +12,7 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { DragulaModule } from 'ng2-dragula';
 import { TaskService } from './services/task.service';
 import { MarkCodeLineComponent } from './components/mark-code-line/mark-code-line.component';
+import { OrderDefinitionHeadingsTaskComponent } from './components/order-definition-headings-task/order-definition-headings-task.component';
 
 
 
@@ -23,6 +24,7 @@ import { MarkCodeLineComponent } from './components/mark-code-line/mark-code-lin
     DnDtaskComponent,
     OverviewComponent,
     MarkCodeLineComponent,
+    OrderDefinitionHeadingsTaskComponent,
   ],
   imports: [
     BrowserModule,

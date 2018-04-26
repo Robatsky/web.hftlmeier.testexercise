@@ -83,6 +83,23 @@
                 "code": "public class EchoClient {\n    public static void main(String[] args) {\n        try(Socket socket = new Socket(\"localhost\", 5555);\n            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));\n            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {\n\n            Scanner scanner = new Scanner(System.in);\n            String input = scanner.nextLine();\n\n            writer.println(input);\n            System.out.println(reader.readLine());\n\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}",
                 "correctLines": [8,11]
             }
+        },
+        {
+            "id": 5,
+            "type": 3,
+            "name": "OrderDefHead",
+            "question": "bla",
+            "maxpoints": 5,
+            "reqpoints": 2,
+            "data": {
+                "definitions": [
+                    {"heading": "Performance", "definition": "Die Leistung der verteilten Anwendung (Antwortzeiten,Berechnungsdauer, etc) sollte durch die Verteilung der VA-Komponenten möglichst hoch sein und sollte auch gleichzeitige Anforderungen mehrerer Nutzer bearbeiten können (Nebenläufigkeit)."},
+                    {"heading": "Skalierbarkeit", "definition": "Beschreibt bei einer Anwendung das Verhalten der Anwendung bzgl. des Ressourcenbedarfs bei wachsenden Eingabemengen. Diese Anforderung ist eine der wichtigsten und beschäftigt sich mit der Frage, inwieweit sich die Performance der verteilten Anwendung durch die Leistungssteigerung einzelner VA-Komponenten oder der Vervielfachung bzw. Erweiterung von VAKomponenten steigern lässt."},
+                    {"heading": "Fehlertoleranz", "definition": "Die VA-Komponenten müssen so gestaltet sein, dass der Ausfall einer Komponente möglichst nicht zum Ausfall der gesamten Anwendung führt oder den Anwender wenigstens ausreichend über die Ursachen des Fehlers informiert."},
+                    {"heading": "Sicherheit", "definition": "Die Verteilte Anwendung muss sicherstellen, dass die Kommunikation der VA-Komponenten in Bezug auf Vertraulichkeit, Authentizität und Integrität der übermittelten Daten sicher ist."},
+                    {"heading": "Heterogene Systeme", "definition": "Die VA-Komponenten einer verteilten Anwendung sollen möglicht auch in heterogenen Systemen eingesetzt werden können, d.h. auf VS-Knoten mit unterschiedlicher Hardware, unterschiedlichen Betriebssystemen etc."}
+                ]
+            }
         }
     ]
 }

@@ -5,6 +5,7 @@ import { DnDtaskComponent } from './components/dnd-task/dnd-task.component';
 import { NamingTaskComponent } from './components/naming-task/naming-task.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { MarkCodeLineComponent } from './components/mark-code-line/mark-code-line.component';
+import { OrderDefinitionHeadingsTaskComponent } from './components/order-definition-headings-task/order-definition-headings-task.component';
 
 // possible? best practise? 
 declare var require: any;
@@ -64,7 +65,8 @@ function convertTaskToRoute(task) {
     const map = [
         ["dnd", DnDtaskComponent],
         ["naming", NamingTaskComponent],
-        ["markcodeline", MarkCodeLineComponent]
+        ["markcodeline", MarkCodeLineComponent],
+        ["orderdefhead", OrderDefinitionHeadingsTaskComponent]
     ];
 
     let mapper = map[task.type];
@@ -108,7 +110,7 @@ export class AppRoutingModule {
     constructor() {
         // generates the navbar entries out of the json file
         loadRouteComponents(true).forEach(e => {
-            this.entries.push({ path: e.path, name: e.data[0].name });
+            this.entries.push({ path: e.path, name: e.data[0].name, active: false});
         });
         // first item is not necessary because it is hardcoded as the overview tab
         this.entries.shift();

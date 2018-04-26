@@ -34,7 +34,6 @@ export abstract class BasicTask implements OnInit, OnDestroy {
         taskService.registerTaskComponent(this);
     }
 
-
     /**
      * Gets called each time the component loses focus.
      * Calls the {@see storeInputValues()} method.

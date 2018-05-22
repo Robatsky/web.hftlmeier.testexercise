@@ -57,6 +57,7 @@ export abstract class BasicTask implements OnInit, OnDestroy {
 	 * the second page.
 	 */
     private nextTask(): void {
+        this.taskService.enableNavbarTaskEntryAt(this.id+1);
         this.router.navigateByUrl(this.router.config[(this.id + 2) % this.router.config.length].path);
     }
 

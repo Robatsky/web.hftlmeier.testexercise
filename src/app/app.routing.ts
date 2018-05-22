@@ -6,6 +6,7 @@ import { NamingTaskComponent } from './components/naming-task/naming-task.compon
 import { OverviewComponent } from './components/overview/overview.component';
 import { MarkCodeLineComponent } from './components/mark-code-line/mark-code-line.component';
 import { OrderDefinitionHeadingsTaskComponent } from './components/order-definition-headings-task/order-definition-headings-task.component';
+import { TaskService } from './services/task.service';
 
 // possible? best practise? 
 declare var require: any;
@@ -98,8 +99,8 @@ function convertTaskToRoute(task) {
     template: `
     <ul class='nav navbar-nav mr auto'>
         <li class="nav-item"><a class="nav-link" routerLink='/' >Overview</a></li>
-        <li class="nav-item" *ngFor="let ne of entries">
-            <a class="nav-link" routerLink='/{{ne.path}}'>{{ne.name}}</a>
+        <li class="nav-item " *ngFor="let ne of entries">
+            <a class="nav-link" routerLink='/{{ne.path}}' [class.disabled]="!ne.active">{{ne.name}}</a>
         </li>
     </ul>
     `
@@ -107,13 +108,14 @@ function convertTaskToRoute(task) {
 export class AppRoutingModule {
     public entries = [];
 
-    constructor() {
+    constructor(taskService: TaskService) {
         // generates the navbar entries out of the json file
         loadRouteComponents(true).forEach(e => {
             this.entries.push({ path: e.path, name: e.data[0].name, active: false});
         });
         // first item is not necessary because it is hardcoded as the overview tab
         this.entries.shift();
+        taskService.setNavbarEntries(this.entries);
     }
 }
 

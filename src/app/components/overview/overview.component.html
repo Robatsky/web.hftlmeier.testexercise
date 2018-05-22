@@ -12,22 +12,8 @@
 
   <button class="btn btn-default" (click)="nextTask();">Los geht's.</button>
   <br>
-  <section *ngIf="chartData.length > 0" >
+  <section>
     <hr>
-
-    <h4>Statistik</h4>
-    <div class="row">
-      <div class="col-md-12">
-        <div>
-          <canvas baseChart
-                  [datasets]="chartData"
-                  [labels]="chartLabels"
-                  [options]="chartOptions"
-                  [legend]="chartLegend"
-                  [chartType]="chartType"
-                  style="width: 100%;" ></canvas>
-        </div>
-      </div>
-  </div>
+    <button class="btn btn-default" (click)="sendResultsToIlias();">Ergebnisse abschicken</button>
   </section>
 </div>

@@ -12,28 +12,6 @@ export class OverviewComponent implements OnInit {
 	public description: string;
 	public taskamount: number;
 
-	/** chart options */
-	public chartOptions: any = {
-		scaleShowVerticalLines: false,
-		responsive: true,
-		scales: {
-			yAxes: [{
-				ticks: {
-					steps: 1,
-					stepValue: 0.5,
-					max: 10,
-					min: 0
-				}
-			}]
-		}
-	};
-
-	/** chart constants */
-	public chartLabels: string[];
-	public chartType: string = 'bar';
-	public chartLegend: boolean = true;
-	public chartData: any[] = [];
-
 	constructor(private router: Router,
 		private route: ActivatedRoute,
 		private taskService: TaskService) {
@@ -42,20 +20,15 @@ export class OverviewComponent implements OnInit {
 		this.taskamount = route.snapshot.data[0].taskamount;
 	}
 
-	public ngOnInit(): void {
-		const taskNames = this.taskService.getAllTasknames();
-
-		let maxTries = 0;
-		this.taskService.getAllTaskResults().forEach((e, idx) => {
-			this.chartData.push({ data: e.reachedPoints, label: taskNames[idx] });
-			maxTries = Math.max(maxTries, e.reachedPoints.length);
-		});
-
-		this.chartLabels = Array.from(new Array(maxTries).keys()).map(e => "#" + e);
+	public ngOnInit(): void {}
+	
+	public nextTask(): void {
+		this.taskService.enableNavbarTaskEntryAt(0);
+		this.router.navigateByUrl(this.router.config[1].path);
 	}
 
-	public nextTask(): void {
-		this.router.navigateByUrl(this.router.config[1].path);
+	public sendResultsToIlias(): void {
+		this.taskService.sendResultsToIlias();
 	}
 
 }

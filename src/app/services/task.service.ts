@@ -1,13 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BasicTask } from '../model/task/BasicTask';
+import { log } from 'util';
 
 @Injectable()
 export class TaskService {
 
 	private arr: TaskEntry[];
+	private entries: any[];
 
 	constructor() {
 		this.arr = [];
+	}
+
+	/**
+	 * Overrides the current entries array which contains the 
+	 * references to the navbar items.
+	 * @param entries new navbar entries
+	 */
+	public setNavbarEntries(entries: any[]):void {
+		this.entries = entries;
+	}
+
+	/**
+	 * Enables the item at the given {@code idx}
+	 * @param idx the index of the item will be enabled
+	 */
+	public enableNavbarTaskEntryAt(idx: number): void {
+		if(idx < this.entries.length) {
+			this.entries[idx].active = true;
+		}
 	}
 
 	/**
@@ -31,9 +52,12 @@ export class TaskService {
 	 * @param id the id of the task to be updated
 	 * @param points the points to push into the points array
 	 */
-	public updateTaskPoints(id: number, points: number) {
+	public updateTaskPoints(id: number, points: number): void {
 		const entry = this.arr.find(element => element.id == id);
-		entry.results.reachedPoints.push(points);
+		if(entry.results.firstResult == -1) {
+			entry.results.firstResult ==  points;
+		}
+		entry.results.currResult = points;
 		
 	}
 
@@ -67,23 +91,43 @@ export class TaskService {
 	 * @return the component as a TaskEntry object
 	 */
 	private taskComponentToTaskEntry(comp: BasicTask): TaskEntry {
-		return { id: comp.getID(), title: comp.getTitle(), results: { reachedPoints: [] }, data: null };
+		return { id: comp.getID(), title: comp.getTitle(), results: { firstResult: -1, currResult: -1 }, data: null };
 	}
 
 	/**
-	 * Returns an array containing all tasknames.
-	 * @return an array of tasknames
+	 * Returns the current total amount of points that the user reached at this task.
+	 * @return total amount of points
 	 */
-	public getAllTasknames(): string[] {
-		return this.arr.map(e => e.title);
+	private getTotalTaskPoints(): number {
+		return this.arr.map(e => e.results.currResult).reduce((acc, value) => acc + value);
 	}
 
 	/**
-	 * Returns an array containing the ResultSet of each task.
-	 * @return an array of resultsets.
+	 * Returns the amount of points that the user reached at his first try.
+	 * @return points at first try
 	 */
-	public getAllTaskResults(): ResultSet[] {
-		return this.arr.map(e => e.results);
+	private getFirstTryTaskPoints(): number {
+		return this.arr.map(e => e.results.firstResult).reduce((acc, value) => acc + value);
+	}
+
+	/**
+	 * Sends the task results to the ilias server
+	 */
+	public sendResultsToIlias(): void {
+		if(!this.allTaskFinished()) {
+			console.log("Es wurden noch nicht alle Aufgaben bestanden!");
+			return;
+		}
+		console.log("First: " + this.getFirstTryTaskPoints());
+		console.log("Total: " + this.getTotalTaskPoints());
+	}
+
+	/**
+	 * Checkes whether all tasks have been passed.
+	 * @return {@code true} if all tasks have been passed, {@code false} otherwise.
+	 */
+	private allTaskFinished(): boolean {
+		return this.entries.filter(e => !e.active).length == 0;
 	}
 }
 
@@ -95,5 +139,6 @@ interface TaskEntry {
 }
 
 interface ResultSet {
-	reachedPoints: number[],
+	firstResult,
+	currResult
 }

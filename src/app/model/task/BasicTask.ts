@@ -71,6 +71,7 @@ export abstract class BasicTask implements OnInit, OnDestroy {
     public reset(): void {
         this.hints = [];
         this.points = 0;
+        this.evaluatedTask = false;
     }
 
     /**

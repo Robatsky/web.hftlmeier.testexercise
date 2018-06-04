@@ -10,10 +10,10 @@
   <p [innerHTML]="description">
   </p>
 
-  <button class="btn btn-default" (click)="nextTask();">Los geht's.</button>
+  <button class="btn btn-default" (click)="nextTask()">Los geht's.</button>
   <br>
   <section>
     <hr>
-    <button class="btn btn-default" (click)="sendResultsToIlias();">Ergebnisse abschicken</button>
+    <button class="btn btn-default" [disabled]="allTasksFinished()" (click)="sendResultsToIlias()">Ergebnisse abschicken</button>
   </section>
 </div>

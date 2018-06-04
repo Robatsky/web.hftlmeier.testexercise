@@ -5,6 +5,8 @@ import { log } from 'util';
 @Injectable()
 export class TaskService {
 
+	private readonly INITIAL_RESULT_VALUE = -1;
+
 	private arr: TaskEntry[];
 	private entries: any[];
 
@@ -54,8 +56,8 @@ export class TaskService {
 	 */
 	public updateTaskPoints(id: number, points: number): void {
 		const entry = this.arr.find(element => element.id == id);
-		if(entry.results.firstResult == -1) {
-			entry.results.firstResult ==  points;
+		if(entry.results.firstResult == this.INITIAL_RESULT_VALUE) {
+			entry.results.firstResult = points;
 		}
 		entry.results.currResult = points;
 		
@@ -91,7 +93,7 @@ export class TaskService {
 	 * @return the component as a TaskEntry object
 	 */
 	private taskComponentToTaskEntry(comp: BasicTask): TaskEntry {
-		return { id: comp.getID(), title: comp.getTitle(), results: { firstResult: -1, currResult: -1 }, data: null };
+		return { id: comp.getID(), title: comp.getTitle(), results: { firstResult: this.INITIAL_RESULT_VALUE, currResult: this.INITIAL_RESULT_VALUE }, data: null };
 	}
 
 	/**
@@ -126,7 +128,7 @@ export class TaskService {
 	 * Checkes whether all tasks have been passed.
 	 * @return {@code true} if all tasks have been passed, {@code false} otherwise.
 	 */
-	private allTaskFinished(): boolean {
+	public allTaskFinished(): boolean {
 		return this.entries.filter(e => !e.active).length == 0;
 	}
 }

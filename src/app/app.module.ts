@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing';
-import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { AceEditorModule } from 'ng2-ace-editor';
 
@@ -31,7 +30,6 @@ import { OrderDefinitionHeadingsTaskComponent } from './components/order-definit
     AppRoutingModule,
     FormsModule,
     DragulaModule,
-    ChartsModule,
     AceEditorModule
   ],
   providers: [TaskService],

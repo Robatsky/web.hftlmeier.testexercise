@@ -69,7 +69,8 @@ export class NamingTaskComponent extends BasicTask {
 		this.userInputs.map(val => val.value).forEach(val => {
 
 			if (removedAnswers.length > 0) {
-				if (ArrayUtil.arrayApproxContains(removedAnswers, val.toLowerCase()) != -1) {
+				const idx = ArrayUtil.arrayApproxContains(removedAnswers, val.toLowerCase()); // ["GET"], POST
+				if (idx != -1 && removedAnswers[idx].match(val.toLocaleLowerCase())) {
 					this.addHint("badge-warning", "Achtung! " + val + " ist bereits vorhanden und wird daher nicht beachtet");
 					return;
 				}

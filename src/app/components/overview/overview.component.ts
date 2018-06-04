@@ -31,4 +31,8 @@ export class OverviewComponent implements OnInit {
 		this.taskService.sendResultsToIlias();
 	}
 
+	public allTasksFinished(): boolean {
+		return !this.taskService.allTaskFinished();
+	}
+
 }

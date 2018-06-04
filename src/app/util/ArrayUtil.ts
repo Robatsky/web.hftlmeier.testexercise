@@ -1,4 +1,5 @@
 import { InputMatcher } from "./InputMatcher";
+import { log } from "util";
 
 export class ArrayUtil {
 
@@ -48,8 +49,12 @@ export class ArrayUtil {
     public static arrayApproxContains(array: string[], value: string): number {
         let min = Number.MAX_SAFE_INTEGER;
         let idx = -1;
+        console.log(array);
+        
         array.forEach((entry,id) => {
             const currentMin = InputMatcher.levenstheinDistance(entry.toLowerCase(), value.toLowerCase());
+            console.log("antwort: " + value + "  current: " + entry + "   " + currentMin);
+            
             if(currentMin < min) {
                 min = currentMin;
                 idx = id;

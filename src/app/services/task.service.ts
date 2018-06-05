@@ -93,22 +93,34 @@ export class TaskService {
 	 * @return the component as a TaskEntry object
 	 */
 	private taskComponentToTaskEntry(comp: BasicTask): TaskEntry {
-		return { id: comp.getID(), title: comp.getTitle(), results: { firstResult: this.INITIAL_RESULT_VALUE, currResult: this.INITIAL_RESULT_VALUE }, data: null };
+		return { 
+			id: comp.getID(), 
+			title: comp.getTitle(), 
+			results: { 
+				firstResult: this.INITIAL_RESULT_VALUE, 
+				currResult: this.INITIAL_RESULT_VALUE 
+			}, 
+			maxPoints: comp.maxpoints, 
+			data: null };
 	}
 
 	/**
 	 * Returns the current total amount of points that the user reached at this task.
 	 * @return total amount of points
 	 */
-	private getTotalTaskPoints(): number {
+	public getTotalTaskPoints(): number {
 		return this.arr.map(e => e.results.currResult).reduce((acc, value) => acc + value);
+	}
+
+	public getMaxPoints(): number {
+		return this.arr.map(e => e.maxPoints).reduce((acc, value) => acc + value);
 	}
 
 	/**
 	 * Returns the amount of points that the user reached at his first try.
 	 * @return points at first try
 	 */
-	private getFirstTryTaskPoints(): number {
+	public getFirstTryTaskPoints(): number {
 		return this.arr.map(e => e.results.firstResult).reduce((acc, value) => acc + value);
 	}
 
@@ -120,6 +132,8 @@ export class TaskService {
 			console.log("Es wurden noch nicht alle Aufgaben bestanden!");
 			return;
 		}
+
+		//TODO: ILIAS-SERVER-REQUEST
 		console.log("First: " + this.getFirstTryTaskPoints());
 		console.log("Total: " + this.getTotalTaskPoints());
 	}
@@ -137,6 +151,7 @@ interface TaskEntry {
 	id: number,
 	title:string,
 	results: ResultSet,
+	maxPoints: number,
 	data: any
 }
 

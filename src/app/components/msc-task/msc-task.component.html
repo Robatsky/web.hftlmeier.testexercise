@@ -1,0 +1,129 @@
+<div>
+  <h3>Aufgabenstellung</h3>
+  <p> Alice möchte mittels <em>asymmetrischer Verschlüsselung</em> einen verschlüsselten Klartext an Bob senden.
+    Allerdings
+    wird die Kommunikation durch einen <em>"Man in the Middle"</em> (MitM) kompromittiert.
+    <b>
+      Erläutern Sie die Funktionsweise des MitM-Angriffs, bei dem der MitM Kenntnis des Klartext-Inhaltes erlangt, ohne
+      dass Alice
+      oder Bob diesen Angriff bemerken.
+    </b>
+    <em>Achten Sie bei eventuellen Freitextfeldern auf korrekte Rechtschreibung!</em>
+  </p>
+</div>
+
+<div class="graphDiv-1" [innerHTML]="mscSvgCode | safeHtml">
+</div>
+<br />
+<br />
+
+<form>
+  <!--Participant-->
+  <section *ngIf="!showNextButton">
+    <b>Nächster Schritt:</b>
+    <br />
+    <br /> Wer (Aktuer): &nbsp;&nbsp;
+    <select placeholder="Akteur?" [(ngModel)]="selectedParticipantSource" name="participantSource" (change)="c()">
+      <option *ngFor="let participant of ruleParticipants" [ngValue]="participant">
+        {{participant.name}}
+      </option>
+    </select>
+    <br />
+    <br />
+  </section>
+
+  <!--Action-->
+  <section *ngIf="selectedParticipantSource.name">
+    Aktion: &nbsp;&nbsp;
+    <select [(ngModel)]="selectedAction" name="action">
+      <option *ngFor="let answer of actionAnswerOptions" [ngValue]="answer">
+        {{answer.name}}
+      </option>
+    </select>
+    <br />
+    <br />
+  </section>
+
+  <!--Target Participant-->
+  <!-- action id=0 : asks; id=1 : sends -->
+  <section *ngIf="selectedAction.id === 0 || selectedAction.id === 1">
+    <span *ngIf="selectedAction.id === 1">An wen (Akteur): &nbsp;&nbsp;</span>
+    <span *ngIf="selectedAction.id === 0">Wen (Akteur): &nbsp;&nbsp;</span>
+    <select placeholder="Ziel-Akteur?" [(ngModel)]="selectedParticipantTarget" name="selectedParticipantTarget"
+      (change)="targetParticipantSelected()">
+      <option *ngFor="let participant of ruleParticipants" [ngValue]="participant">
+        {{participant.name}}
+      </option>
+    </select>
+  </section>
+
+
+  <!--sends (id=1) Subjects-->
+  <section *ngIf="selectedAction.id === 1 && selectedParticipantTarget.name">
+    Was?
+    <br />
+    <br />
+    <div *ngFor="let answer of selectedParticipantSource.subjects">
+      <input type="checkbox" [(ngModel)]="answer.checked" [value]="answer.name" (click)="toggleSubjectSelection(answer)"
+        name="checkedSubjects"> {{answer.name}}
+    </div>
+    <br />
+    <br />
+  </section>
+  <!--asks (id=0) Subjects-->
+  <section *ngIf="selectedAction.id === 0 && selectedParticipantTarget.name">
+    nach Was?
+    <br />
+    <br />
+    <div *ngFor="let answer of selectedParticipantTarget.subjects">
+      <input type="checkbox" [(ngModel)]="answer.checked" [value]="answer.name" (click)="toggleSubjectSelection(answer)"
+        name="checkedSubjects"> {{answer.name}}
+    </div>
+    <br />
+    <br />
+  </section>
+
+  <!-- encrypts (id=2) / decrypts (id=3) what -->
+  <section *ngIf="selectedAction.id === 2 || selectedAction.id === 3">
+    Was: &nbsp;&nbsp;
+    <select placeholder="was" [(ngModel)]="selectedSubject" name="selectedSubject">
+      <option *ngFor="let subject of selectedParticipantSource.subjects" [ngValue]="subject">
+        {{subject.name}}
+      </option>
+    </select>
+    <br />
+    <br />
+  </section>
+
+  <!-- ... using what sec. key? -->
+  <!-- encrypts (id=2) / decrypts (id=3) what -->
+  <section *ngIf="(selectedAction.id === 2 || selectedAction.id === 3) && selectedSubject.name">
+    Unter Verwendung von was?
+    <select placeholder="was" [(ngModel)]="selectedUsingSubject" name="selectedUsingSubject">
+      <option *ngFor="let subject of selectedParticipantSource.subjects" [ngValue]="subject">
+        {{subject.name}}
+      </option>
+    </select>
+    <br />
+    <br />
+  </section>
+
+  <!-- ... and the result is ? -->
+  <!-- encrypts (id=2) / decrypts (id=3) what -->
+  <section *ngIf="(selectedAction.id === 2 || selectedAction.id === 3) && selectedSubject.name">
+    Das Resultat ist:
+    <select placeholder="was" [(ngModel)]="selectedResultSubject" name="selectedResultSubject" (change)="finalSubjectSelected()">
+      <option *ngFor="let subject of ruleSubjects" [ngValue]="subject">
+        {{subject.name}}
+      </option>
+    </select>
+    <br />
+    <br />
+  </section>
+
+  <section *ngIf="!stepReadyButtonDisabled">
+    <button raised-button color="accent" [disabled]="stepReadyButtonDisabled" (click)="stepReady()" style="font-size: large">
+      Step ready?
+    </button>
+  </section>
+</form>

@@ -1,7 +1,6 @@
 <section>
 	<div>
 		<h2>{{title}}</h2>
-		<a>Typ: Überschriften zuordnen</a>
 		<hr>
 		<p [innerHTML]="question"></p>
 		<br>
@@ -37,20 +36,20 @@
 		</div>
 	</div>
 	<br>
-    <hr>
-    <br>
-    <button [disabled]="alreadyEvaluated()" class="btn btn-success" (click)="evaluateInput()">Auswerten</button>
-    <button *ngIf="points >= reqpoints" class="btn btn-success" (click)="nextTask()">Weiter</button>
-    <button class="btn btn-danger" (click)="reset()">Noch mal</button>
-    <br>
-    <br>
-    <div class="hints-div" *ngFor="let hint of hints">
-        <span class="badge {{hint.styleClass}}">{{hint.text}}</span>
-    </div>
-    <div *ngIf="evaluatedTask">
-        <hr>
-        <span>Erreichte Anzahl an Punkten: {{points}}/{{maxpoints}}</span>
-        <br>
-        <span *ngIf="points < reqpoints">Sie brauchen mindestens {{reqpoints}} Punkte um vorzufahren.</span>
-    </div>
+	<hr>
+	<br>
+	<button [disabled]="alreadyEvaluated()" class="btn btn-success" (click)="evaluateInput()">Auswerten</button>
+	<button *ngIf="points >= reqpoints" class="btn btn-success" (click)="nextTask()">Weiter</button>
+	<button class="btn btn-danger" (click)="reset()">Noch mal</button>
+	<br>
+	<br>
+	<div class="hints-div" *ngFor="let hint of hints">
+		<span class="badge {{hint.styleClass}}">{{hint.text}}</span>
+	</div>
+	<div *ngIf="evaluatedTask">
+		<hr>
+		<span>Erreichte Anzahl an Punkten: {{points}}/{{maxpoints}}</span>
+		<br>
+		<span *ngIf="points < reqpoints">Sie brauchen mindestens {{reqpoints}} Punkte um vorzufahren.</span>
+	</div>
 </section>

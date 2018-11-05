@@ -7,8 +7,8 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { MarkCodeLineComponent } from './components/mark-code-line/mark-code-line.component';
 import { OrderDefinitionHeadingsTaskComponent } from './components/order-definition-headings-task/order-definition-headings-task.component';
 import { TaskService } from './services/task.service';
+import { MscTaskComponent } from './components/msc-task/msc-task.component';
 
-// possible? best practise? 
 declare var require: any;
 let routes: Routes = [
     {
@@ -17,6 +17,12 @@ let routes: Routes = [
         data: [{ id: -1, name: "json.name", description: "json.description", taskamount: 0 }]
     }];
 routes = loadRouteComponents(false);
+/*routes.push({
+    path: 'msc-task',
+    component: MscTaskComponent,
+    data: [{ id: 20, name: "Verschlüsselung", description: "" }]
+});*/
+
 /**
  * Loades the json file and converts the tasks into 
  * route objects. 
@@ -111,7 +117,7 @@ export class AppRoutingModule {
     constructor(taskService: TaskService) {
         // generates the navbar entries out of the json file
         loadRouteComponents(true).forEach(e => {
-            this.entries.push({ path: e.path, name: e.data[0].name, active: false});
+            this.entries.push({ path: e.path, name: e.data[0].name, active: false });
         });
         // first item is not necessary because it is hardcoded as the overview tab
         this.entries.shift();

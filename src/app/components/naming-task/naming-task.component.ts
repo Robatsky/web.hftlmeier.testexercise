@@ -20,7 +20,6 @@ export class NamingTaskComponent extends BasicTask {
 	constructor(route: ActivatedRoute, router: Router,
 		taskService: TaskService) {
 		super(route, router, taskService);
-
 	}
 
 	/**

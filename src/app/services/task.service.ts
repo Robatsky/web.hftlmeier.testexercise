@@ -19,7 +19,7 @@ export class TaskService {
 	 * references to the navbar items.
 	 * @param entries new navbar entries
 	 */
-	public setNavbarEntries(entries: any[]):void {
+	public setNavbarEntries(entries: any[]): void {
 		this.entries = entries;
 	}
 
@@ -28,7 +28,7 @@ export class TaskService {
 	 * @param idx the index of the item will be enabled
 	 */
 	public enableNavbarTaskEntryAt(idx: number): void {
-		if(idx < this.entries.length) {
+		if (idx < this.entries.length) {
 			this.entries[idx].active = true;
 		}
 	}
@@ -56,11 +56,11 @@ export class TaskService {
 	 */
 	public updateTaskPoints(id: number, points: number): void {
 		const entry = this.arr.find(element => element.id == id);
-		if(entry.results.firstResult == this.INITIAL_RESULT_VALUE) {
+		if (entry.results.firstResult == this.INITIAL_RESULT_VALUE) {
 			entry.results.firstResult = points;
 		}
 		entry.results.currResult = points;
-		
+
 	}
 
 	/**
@@ -93,15 +93,16 @@ export class TaskService {
 	 * @return the component as a TaskEntry object
 	 */
 	private taskComponentToTaskEntry(comp: BasicTask): TaskEntry {
-		return { 
-			id: comp.getID(), 
-			title: comp.getTitle(), 
-			results: { 
-				firstResult: this.INITIAL_RESULT_VALUE, 
-				currResult: this.INITIAL_RESULT_VALUE 
-			}, 
-			maxPoints: comp.maxpoints, 
-			data: null };
+		return {
+			id: comp.getID(),
+			title: comp.getTitle(),
+			results: {
+				firstResult: this.INITIAL_RESULT_VALUE,
+				currResult: this.INITIAL_RESULT_VALUE
+			},
+			maxPoints: comp.maxpoints,
+			data: null
+		};
 	}
 
 	/**
@@ -128,7 +129,7 @@ export class TaskService {
 	 * Sends the task results to the ilias server
 	 */
 	public sendResultsToIlias(): void {
-		if(!this.allTaskFinished()) {
+		if (!this.allTaskFinished()) {
 			console.log("Es wurden noch nicht alle Aufgaben bestanden!");
 			return;
 		}
@@ -149,7 +150,7 @@ export class TaskService {
 
 interface TaskEntry {
 	id: number,
-	title:string,
+	title: string,
 	results: ResultSet,
 	maxPoints: number,
 	data: any
